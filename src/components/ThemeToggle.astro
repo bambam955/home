@@ -1,0 +1,32 @@
+---
+import Sun from 'lucide-static/icons/sun.svg';
+import Moon from 'lucide-static/icons/moon.svg';
+import Laptop from 'lucide-static/icons/laptop.svg';
+---
+
+<div class="flex items-center space-x-2">
+  <button
+    id="light"
+    class="theme-toggle-btn p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+    aria-label="Light mode"
+  >
+    <Sun class="w-5 h-5" />
+  </button>
+  <button
+    id="dark"
+    class="theme-toggle-btn p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+    aria-label="Dark mode"
+  >
+    <Moon class="w-5 h-5" />
+  </button>
+  <button
+    id="system"
+    class="theme-toggle-btn p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
+    aria-label="System mode"
+  >
+    <Laptop class="w-5 h-5" />
+  </button>
+</div>
+
+<!-- This will run on the client -->
+<script src="/src/scripts/theme-toggle.js" type="module"></script>

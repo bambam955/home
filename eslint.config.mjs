@@ -2,6 +2,7 @@ import eslintAstroPlugin from 'eslint-plugin-astro';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import prettierPlugin from 'eslint-plugin-prettier';
 import eslintJs from '@eslint/js';
+import globals from 'globals';
 
 export default [
   eslintJs.configs.recommended, // Base recommended ESLint rules
@@ -10,6 +11,9 @@ export default [
     files: ['**/*.{js,ts,astro}'],
     languageOptions: {
       parser: typescriptEslintPlugin.parser, // Use TypeScript parser
+      globals: {
+        ...globals.browser,
+      },
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin, // TypeScript plugin
