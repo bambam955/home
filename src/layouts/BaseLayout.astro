@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
 const { title } = Astro.props;
 ---
 
@@ -12,6 +13,7 @@ const { title } = Astro.props;
   <body class="min-h-screen transition-colors duration-300">
     <header class="flex justify-end p-4">
       <slot name="header" />
+      <ThemeToggle />
     </header>
     <main class="flex flex-col items-center gap-8 p-8">
       <slot />

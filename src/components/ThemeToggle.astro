@@ -2,31 +2,52 @@
 import Sun from 'lucide-static/icons/sun.svg';
 import Moon from 'lucide-static/icons/moon.svg';
 import Laptop from 'lucide-static/icons/laptop.svg';
+
+const ICON_MAP = {
+  light: Sun,
+  dark: Moon,
+  system: Laptop,
+};
+
+const defaultTheme = 'system';
+const DefaultIcon = ICON_MAP[defaultTheme];
 ---
 
-<div class="flex items-center space-x-2">
+<div class="relative inline-block text-left">
   <button
-    id="light"
-    class="theme-toggle-btn p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
-    aria-label="Light mode"
+    id="theme-toggle-trigger"
+    class="w-10 h-10 flex items-center justify-center rounded-xl border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+    aria-haspopup="true"
+    aria-expanded="false"
   >
-    <Sun class="w-5 h-5" />
+    <span id="current-theme-icon">
+      <DefaultIcon class="w-5 h-5" />
+    </span>
   </button>
-  <button
-    id="dark"
-    class="theme-toggle-btn p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
-    aria-label="Dark mode"
+
+  <div
+    id="theme-dropdown"
+    class="hidden absolute right-0 z-10 mt-2 w-30 origin-top-right rounded-md overflow-hidden bg-white dark:bg-gray-800 shadow-lg ring-1 ring-black ring-opacity-5"
   >
-    <Moon class="w-5 h-5" />
-  </button>
-  <button
-    id="system"
-    class="theme-toggle-btn p-2 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700"
-    aria-label="System mode"
-  >
-    <Laptop class="w-5 h-5" />
-  </button>
+    <button
+      class="theme-option flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+      data-theme="light"
+    >
+      <Sun class="w-4 h-4 mr-2" />Light
+    </button>
+    <button
+      class="theme-option flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+      data-theme="dark"
+    >
+      <Moon class="w-4 h-4 mr-2" /> Dark
+    </button>
+    <button
+      class="theme-option flex items-center w-full px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none"
+      data-theme="system"
+    >
+      <Laptop class="w-4 h-4 mr-2" /> System
+    </button>
+  </div>
 </div>
 
-<!-- This will run on the client -->
 <script src="/src/scripts/theme-toggle.js" type="module"></script>
