@@ -1,3 +1,16 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --color-surface-100: hsl(240, 4%, 90%);    
+    --color-surface-200: hsl(240, 4%, 80%);
+    --color-surface-300: hsl(240, 4%, 70%);
+    --color-surface-400: hsl(240, 4%, 60%);
+    --color-surface-500: hsl(240, 4%, 50%);
+    --color-surface-600: hsl(240, 4%, 40%);
+    --color-surface-700: hsl(240, 4%, 30%);    
+    --color-surface-800: hsl(240, 4%, 20%);    
+    --color-surface-900: hsl(240, 4%, 10%);
+    --color-surface-950: hsl(240, 4%, 5%);
+}
