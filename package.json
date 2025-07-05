@@ -1,5 +1,5 @@
 {
-  "name": "bmoore-personal-site",
+  "name": "bambam955-personal-site",
   "type": "module",
   "description": "Bennett Moore's personal website",
   "version": "0.0.1",
@@ -20,9 +20,10 @@
     ]
   },
   "dependencies": {
-    "@astrojs/tailwind": "^5.1.5",
-    "astro": "^5.1.9",
-    "tailwindcss": "^3.4.17"
+    "@tailwindcss/vite": "^4.1.11",
+    "astro": "^5.11.0",
+    "lucide-static": "^0.525.0",
+    "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -30,7 +31,7 @@
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-astro": "^1.3.1",
     "eslint-plugin-prettier": "^5.2.3",
-    "globals": "^15.14.0",
+    "globals": "^15.15.0",
     "husky": "^9.1.7",
     "lint-staged": "^15.4.3",
     "markdownlint-cli": "^0.44.0",

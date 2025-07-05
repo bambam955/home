@@ -1,0 +1,21 @@
+---
+import '../styles/global.css';
+import PageHeader from '../components/PageHeader.astro';
+const { title } = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body
+    class="min-h-screen transition-colors duration-300 bg-surface-100 dark:bg-surface-950"
+  >
+    <PageHeader>{title}</PageHeader>
+    <main class="flex flex-col items-center gap-8 p-8">
+      <slot />
+    </main>
+  </body>
+</html>

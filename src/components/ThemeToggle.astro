@@ -1,0 +1,53 @@
+---
+import Sun from 'lucide-static/icons/sun.svg';
+import Moon from 'lucide-static/icons/moon.svg';
+import Laptop from 'lucide-static/icons/laptop.svg';
+
+const ICON_MAP = {
+  light: Sun,
+  dark: Moon,
+  system: Laptop,
+};
+
+const defaultTheme = 'system';
+const DefaultIcon = ICON_MAP[defaultTheme];
+---
+
+<div class="relative inline-block text-left">
+  <button
+    id="theme-toggle-trigger"
+    class="w-10 h-10 flex items-center justify-center rounded-xl border border-surface-300 dark:border-surface-700 bg-surface-100 dark:bg-surface-950 text-surface-700 dark:text-surface-200 hover:bg-surface-200 dark:hover:bg-surface-800 focus:outline-none"
+    aria-haspopup="true"
+    aria-expanded="false"
+  >
+    <span id="current-theme-icon">
+      <DefaultIcon class="w-5 h-5" />
+    </span>
+  </button>
+
+  <div
+    id="theme-dropdown"
+    class="hidden absolute right-0 z-10 mt-2 w-30 origin-top-right rounded-md overflow-hidden bg-surface-100 dark:bg-surface-950 shadow-lg ring-1 ring-surface-300 dark:ring-surface-700 ring-opacity-5"
+  >
+    <button
+      class="theme-option flex items-center w-full px-4 py-2 text-sm text-surface-700 dark:text-surface-200 hover:bg-surface-200 dark:hover:bg-surface-800 focus:outline-none"
+      data-theme="light"
+    >
+      <Sun class="w-4 h-4 mr-2" />Light
+    </button>
+    <button
+      class="theme-option flex items-center w-full px-4 py-2 text-sm text-surface-700 dark:text-surface-200 hover:bg-surface-200 dark:hover:bg-surface-800 focus:outline-none"
+      data-theme="dark"
+    >
+      <Moon class="w-4 h-4 mr-2" /> Dark
+    </button>
+    <button
+      class="theme-option flex items-center w-full px-4 py-2 text-sm text-surface-700 dark:text-surface-200 hover:bg-surface-200 dark:hover:bg-surface-800 focus:outline-none"
+      data-theme="system"
+    >
+      <Laptop class="w-4 h-4 mr-2" /> System
+    </button>
+  </div>
+</div>
+
+<script src="src/scripts/theme-toggle.js" type="module"></script>
