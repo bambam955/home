@@ -8,7 +8,7 @@ export default [
   eslintJs.configs.recommended, // Base recommended ESLint rules
   ...eslintAstroPlugin.configs.recommended,
   {
-    files: ['**/*.{js,ts,astro}'],
+    files: ['**/*.{js,mjs,ts,astro}'],
     languageOptions: {
       parser: typescriptEslintPlugin.parser, // Use TypeScript parser
       globals: {

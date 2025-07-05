@@ -1,5 +1,5 @@
 {
-  "name": "bmoore-personal-site",
+  "name": "bambam955-personal-site",
   "type": "module",
   "description": "Bennett Moore's personal website",
   "version": "0.0.1",
@@ -20,14 +20,9 @@
     ]
   },
   "dependencies": {
-    "@astrojs/react": "^4.3.0",
     "@tailwindcss/vite": "^4.1.11",
-    "@types/react": "^19.1.8",
-    "@types/react-dom": "^19.1.6",
     "astro": "^5.11.0",
     "lucide-static": "^0.525.0",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
     "tailwindcss": "^4.1.11"
   },
   "devDependencies": {
