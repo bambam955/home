@@ -20,13 +20,10 @@ const mainNavItems = [
 ---
 
 <aside
-  class="h-screen w-64 bg-gray-900 text-white flex flex-col p-4 fixed left-0 top-0"
+  class="my-6 w-48 sticky text-white flex flex-col p-4 left-0 top-0 border-r-2 border-r-surface-200 dark:border-r-surface-700"
 >
-  <!-- Logo / Name -->
-  <div class="mb-8">
-    <h1 class="text-2xl font-bold">Your Name</h1>
-    <p class="text-sm text-gray-400">Web Developer</p>
-  </div>
+  <!-- TODO: add a logo here -->
+  <div class="pt-12"></div>
 
   <!-- Navigation Links -->
   <nav class="flex-1">
@@ -34,7 +31,10 @@ const mainNavItems = [
       {
         mainNavItems.map((linkItem) => (
           <li>
-            <a class="block hover:text-blue-400" href={linkItem.route}>
+            <a
+              class="block text-surface-700 dark:text-surface-300"
+              href={linkItem.route}
+            >
               {linkItem.title}
             </a>
           </li>

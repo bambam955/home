@@ -12,12 +12,14 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body
-    class="min-h-screen transition-colors duration-300 bg-surface-100 dark:bg-surface-950"
+    class="min-h-screen flex transition-colors duration-300 bg-surface-100 dark:bg-surface-950"
   >
-    <PageHeader>{title}</PageHeader>
     <NavBar />
-    <main class="flex flex-col items-center gap-8 p-8">
-      <slot />
-    </main>
+    <div class="flex-1 pl-2">
+      <PageHeader>{title}</PageHeader>
+      <main class="flex flex-col gap-8 p-4">
+        <slot />
+      </main>
+    </div>
   </body>
 </html>
