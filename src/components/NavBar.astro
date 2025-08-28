@@ -1,0 +1,52 @@
+---
+const mainNavItems = [
+  {
+    title: 'Home',
+    route: '/',
+  },
+  {
+    title: 'About',
+    route: '/about',
+  },
+  {
+    title: 'Projects',
+    route: '/projects',
+  },
+  {
+    title: 'Blog',
+    route: '/blog',
+  },
+];
+---
+
+<aside
+  class="h-screen w-64 bg-gray-900 text-white flex flex-col p-4 fixed left-0 top-0"
+>
+  <!-- Logo / Name -->
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold">Your Name</h1>
+    <p class="text-sm text-gray-400">Web Developer</p>
+  </div>
+
+  <!-- Navigation Links -->
+  <nav class="flex-1">
+    <ul class="space-y-4">
+      {
+        mainNavItems.map((linkItem) => (
+          <li>
+            <a class="block hover:text-blue-400" href={linkItem.route}>
+              {linkItem.title}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <!-- Social Links -->
+  <div class="mt-8 flex space-x-4">
+    <a href="https://github.com/yourusername" target="_blank">🐙</a>
+    <a href="https://linkedin.com/in/yourusername" target="_blank">💼</a>
+    <a href="https://twitter.com/yourusername" target="_blank">🐦</a>
+  </div>
+</aside>
