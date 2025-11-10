@@ -1,0 +1,32 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "A developer portfolio built with Astro" } = Astro.props;
+import MatrixRain from '../components/MatrixRain.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+  </head>
+  <body class="bg-gray-dark text-gray-text min-h-screen font-mono">
+    <MatrixRain />
+    <div class="relative z-10">
+      <slot />
+    </div>
+  </body>
+</html>

@@ -1,0 +1,31 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string;
+  demo: string;
+}
+
+const { title, description, tags, github, demo } = Astro.props;
+---
+
+<div class="bg-gray-medium border border-gray-light hover:border-green-primary transition-all p-6 rounded-lg shadow-soft hover:shadow-soft-lg">
+  <h3 class="text-xl font-bold mb-3 text-green-primary">{title}</h3>
+  <p class="text-gray-dim mb-4">{description}</p>
+  <div class="flex flex-wrap gap-2 mb-4">
+    {tags.map(tag => (
+      <span class="bg-gray-dark text-green-accent px-3 py-1 rounded-full text-sm">
+        {tag}
+      </span>
+    ))}
+  </div>
+  <div class="flex gap-4">
+    <a href={github} target="_blank" rel="noopener noreferrer" class="text-green-primary hover:text-green-accent transition-colors">
+      GitHub
+    </a>
+    <a href={demo} target="_blank" rel="noopener noreferrer" class="text-green-primary hover:text-green-accent transition-colors">
+      Live Demo
+    </a>
+  </div>
+</div>

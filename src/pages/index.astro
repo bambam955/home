@@ -1,8 +1,83 @@
 ---
-const pageTitle = 'Welcome!!!';
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import SkillsWeb from '../components/SkillsWeb.astro';
 ---
 
-<html>
-  <head><title>{pageTitle}</title></head>
-  <body><h1>{pageTitle}</h1></body>
-</html>
+<Layout title="Home | Developer Portfolio">
+  <Header />
+  
+  <main class="min-h-screen">
+    <!-- Hero Section -->
+    <section class="py-20 px-4">
+      <div class="max-w-4xl mx-auto text-center">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-green-primary">
+          Hi, I'm a Developer
+        </h1>
+        <p class="text-xl text-gray-dim mb-8">
+          Building amazing web experiences with modern technologies
+        </p>
+        <div class="flex gap-4 justify-center">
+          <a href="/projects" class="bg-green-primary hover:bg-green-accent text-green-darker px-6 py-3 rounded-lg transition-colors">
+            View Projects
+          </a>
+          <a href="/about" class="border border-green-primary hover:bg-green-primary hover:text-green-darker text-green-primary px-6 py-3 rounded-lg transition-colors">
+            About Me
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Projects -->
+    <section class="py-20 px-4 bg-gray-medium/30">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12 text-green-primary">
+          Featured Projects
+        </h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <ProjectCard 
+            title="Project One"
+            description="A amazing web application built with modern technologies"
+            tags={["React", "TypeScript", "Tailwind"]}
+            github="#"
+            demo="#"
+          />
+          <ProjectCard 
+            title="Project Two"
+            description="Another cool project showcasing different skills"
+            tags={["Node.js", "Express", "MongoDB"]}
+            github="#"
+            demo="#"
+          />
+          <ProjectCard 
+            title="Project Three"
+            description="A creative solution to an interesting problem"
+            tags={["Vue.js", "Python", "PostgreSQL"]}
+            github="#"
+            demo="#"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="py-20 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-3xl font-bold text-center mb-12 text-green-primary">
+          Skills & Technologies
+        </h2>
+        <div class="mb-8 text-center">
+          <p class="text-gray-dim max-w-2xl mx-auto">
+            Interactive skills visualization. Click any skill to highlight connections. 
+            Larger nodes represent areas of deeper expertise.
+          </p>
+        </div>
+        <SkillsWeb />
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
