@@ -18,12 +18,6 @@ export default [
     },
   },
   {
-    files: ['**/*.d.ts'],
-    rules: {
-      '@typescript-eslint/triple-slash-reference': 'off',
-    },
-  },
-  {
     files: ['**/*.{js,ts}'],
     languageOptions: {
       parser: typescriptEslintParser, // Use TypeScript parser
