@@ -1,15 +1,35 @@
 import eslintAstroPlugin from 'eslint-plugin-astro';
+import typescriptEslintParser from '@typescript-eslint/parser';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import prettierPlugin from 'eslint-plugin-prettier';
 import eslintJs from '@eslint/js';
+import globals from 'globals';
 
 export default [
   eslintJs.configs.recommended, // Base recommended ESLint rules
   ...eslintAstroPlugin.configs.recommended,
   {
-    files: ['**/*.{js,ts,astro}'],
+    ignores: ['.astro/**'],
+  },
+  {
+    files: ['src/scripts/*.js'],
     languageOptions: {
-      parser: typescriptEslintPlugin.parser, // Use TypeScript parser
+      globals: globals.browser,
+    },
+  },
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/triple-slash-reference': 'off',
+    },
+  },
+  {
+    files: ['**/*.{js,ts}'],
+    languageOptions: {
+      parser: typescriptEslintParser, // Use TypeScript parser
+      parserOptions: {
+        project: './tsconfig.json',
+      },
     },
     plugins: {
       '@typescript-eslint': typescriptEslintPlugin, // TypeScript plugin

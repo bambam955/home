@@ -3,42 +3,119 @@
 const skillsConfig = {
   skills: [
     // Core Expertise (Size 4)
-    { name: "C++", category: "languages", size: 4, connections: ["Qt", "CAN", "Embedded", "C"] },
-    { name: "Qt", category: "frameworks", size: 4, connections: ["C++", "CAN", "Embedded", "QML", "GUI"]},
-    { name: "Linux", category: "domains", size: 4, connections: ["Embedded", "C++"]},
+    {
+      name: 'C++',
+      category: 'languages',
+      size: 4,
+      connections: ['Qt', 'CAN', 'Embedded', 'C'],
+    },
+    {
+      name: 'Qt',
+      category: 'frameworks',
+      size: 4,
+      connections: ['C++', 'CAN', 'Embedded', 'QML', 'GUI'],
+    },
+    {
+      name: 'Linux',
+      category: 'domains',
+      size: 4,
+      connections: ['Embedded', 'C++'],
+    },
 
     // Secondary skills (Size 3)
-    { name: "CAN", category: "protocols", size: 3, connections: ["C++", "Qt", "Embedded", "Automotive"] },
-    { name: "Embedded", category: "domains", size: 3, connections: ["C++", "CAN", "Qt", "Automotive"] },
-    { name: "QML", category: "languages", size: 3, connections: ["Qt", "GUI"] },
-    { name: "C", category: "languages", size: 3, connections: ["C++", "Embedded"]},
-    { name: "HTML/CSS", category: "languages", size: 3, connections: ["React", "Tailwind"] },
-    { name: "Docker", category: "languages", size: 3, connections: []},
+    {
+      name: 'CAN',
+      category: 'protocols',
+      size: 3,
+      connections: ['C++', 'Qt', 'Embedded', 'Automotive'],
+    },
+    {
+      name: 'Embedded',
+      category: 'domains',
+      size: 3,
+      connections: ['C++', 'CAN', 'Qt', 'Automotive'],
+    },
+    { name: 'QML', category: 'languages', size: 3, connections: ['Qt', 'GUI'] },
+    {
+      name: 'C',
+      category: 'languages',
+      size: 3,
+      connections: ['C++', 'Embedded'],
+    },
+    {
+      name: 'HTML/CSS',
+      category: 'languages',
+      size: 3,
+      connections: ['React', 'Tailwind'],
+    },
+    { name: 'Docker', category: 'languages', size: 3, connections: [] },
 
     // Emerging skills (size 2)
-    { name: "Python", category: "languages", size: 2, connections: [] },
-    { name: "JavaScript", category: "languages", size: 2, connections: ["React", "Node.js", "TypeScript"] },
-    { name: "TypeScript", category: "languages", size: 2, connections: ["JavaScript", "React", "Node.js"] },
-    { name: "GUI", category: "domains", size: 2, connections: ["Tailwind", "QML", "HTML/CSS", "Qt"] },
-    { name: "Automotive", category: "domains", size: 1, connections: ["CAN", "Embedded"] },
-    
+    { name: 'Python', category: 'languages', size: 2, connections: [] },
+    {
+      name: 'JavaScript',
+      category: 'languages',
+      size: 2,
+      connections: ['React', 'Node.js', 'TypeScript'],
+    },
+    {
+      name: 'TypeScript',
+      category: 'languages',
+      size: 2,
+      connections: ['JavaScript', 'React', 'Node.js'],
+    },
+    {
+      name: 'GUI',
+      category: 'domains',
+      size: 2,
+      connections: ['Tailwind', 'QML', 'HTML/CSS', 'Qt'],
+    },
+    {
+      name: 'Automotive',
+      category: 'domains',
+      size: 1,
+      connections: ['CAN', 'Embedded'],
+    },
+
     // Minor skills (size 1)
-    { name: "REST API", category: "concepts", size: 1, connections: ["Express", "Node.js"] },
-    { name: "React", category: "frameworks", size: 1, connections: ["JavaScript", "TypeScript", "HTML/CSS"] },
-    { name: "Node.js", category: "frameworks", size: 1, connections: ["JavaScript", "TypeScript"] },
-    { name: "Tailwind", category: "frameworks", size: 1, connections: ["HTML/CSS", "React"] },
+    {
+      name: 'REST API',
+      category: 'concepts',
+      size: 1,
+      connections: ['Express', 'Node.js'],
+    },
+    {
+      name: 'React',
+      category: 'frameworks',
+      size: 1,
+      connections: ['JavaScript', 'TypeScript', 'HTML/CSS'],
+    },
+    {
+      name: 'Node.js',
+      category: 'frameworks',
+      size: 1,
+      connections: ['JavaScript', 'TypeScript'],
+    },
+    {
+      name: 'Tailwind',
+      category: 'frameworks',
+      size: 1,
+      connections: ['HTML/CSS', 'React'],
+    },
   ],
   categories: {
-    languages: "#00d992",      // Green primary
-    frameworks: "#00b878",     // Slightly darker green
-    protocols: "#00d992",      // Green primary
-    domains: "#00b878",        // Slightly darker green
-    concepts: "#00d992"         // Green primary
-  }
+    languages: '#00d992', // Green primary
+    frameworks: '#00b878', // Slightly darker green
+    protocols: '#00d992', // Green primary
+    domains: '#00b878', // Slightly darker green
+    concepts: '#00d992', // Green primary
+  },
 };
 ---
 
-<div class="relative w-full h-[600px] bg-gray-medium/30 rounded-lg overflow-hidden">
+<div
+  class="relative w-full h-[600px] bg-gray-medium/30 rounded-lg overflow-hidden"
+>
   <canvas id="skills-web" class="w-full h-full"></canvas>
 </div>
 
@@ -47,46 +124,46 @@ const skillsConfig = {
     constructor(canvasId, skillsData) {
       this.canvas = document.getElementById(canvasId);
       if (!this.canvas) return;
-      
+
       this.ctx = this.canvas.getContext('2d');
       this.skills = skillsData.skills;
       this.categories = skillsData.categories;
-      
+
       this.nodes = [];
       this.connections = [];
       this.hoveredNode = null;
       this.selectedNode = null;
-      
+
       this.init();
       this.animate();
-      
+
       // Event listeners
       this.canvas.addEventListener('mousemove', (e) => this.handleMouseMove(e));
       this.canvas.addEventListener('click', (e) => this.handleClick(e));
       this.canvas.addEventListener('resize', () => this.handleResize());
       window.addEventListener('resize', () => this.handleResize());
     }
-    
+
     init() {
       this.resizeCanvas();
       this.createNodes();
       this.createConnections();
       this.applyPhysics();
     }
-    
+
     resizeCanvas() {
       const rect = this.canvas.getBoundingClientRect();
       this.canvas.width = rect.width;
       this.canvas.height = rect.height;
     }
-    
+
     createNodes() {
-      this.nodes = this.skills.map((skill, index) => {
+      this.nodes = this.skills.map((skill) => {
         // Random initial positions with maximum spacing
         const margin = 100;
         const x = margin + Math.random() * (this.canvas.width - 2 * margin);
         const y = margin + Math.random() * (this.canvas.height - 2 * margin);
-        
+
         return {
           id: skill.name,
           name: skill.name,
@@ -96,152 +173,162 @@ const skillsConfig = {
           y: y,
           vx: 0,
           vy: 0,
-          color: this.categories[skill.category] || '#00d992'
+          color: this.categories[skill.category] || '#00d992',
         };
       });
     }
-    
+
     createConnections() {
       this.connections = [];
-      const skillMap = new Map(this.skills.map(s => [s.name, s]));
-      
-      this.skills.forEach(skill => {
-        skill.connections.forEach(connectionName => {
+      const skillMap = new Map(this.skills.map((s) => [s.name, s]));
+
+      this.skills.forEach((skill) => {
+        skill.connections.forEach((connectionName) => {
           if (skillMap.has(connectionName)) {
             this.connections.push({
               from: skill.name,
-              to: connectionName
+              to: connectionName,
             });
           }
         });
       });
     }
-    
+
     applyPhysics() {
       const centerX = this.canvas.width / 2;
       const centerY = this.canvas.height / 2;
       const iterations = 100;
-      
+
       for (let iter = 0; iter < iterations; iter++) {
         // Apply forces
-        this.nodes.forEach(node => {
+        this.nodes.forEach((node) => {
           // Weak center attraction (keeps web somewhat centered)
           const dx = centerX - node.x;
           const dy = centerY - node.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (distance > 0) {
-            node.vx += dx / distance * 0.005; // Reduced center pull
-            node.vy += dy / distance * 0.005;
+            node.vx += (dx / distance) * 0.005; // Reduced center pull
+            node.vy += (dy / distance) * 0.005;
           }
-          
+
           // Connection attraction (keeps connected nodes closer)
-          this.connections.forEach(connection => {
+          this.connections.forEach((connection) => {
             let other = null;
             if (connection.from === node.id) {
-              other = this.nodes.find(n => n.id === connection.to);
+              other = this.nodes.find((n) => n.id === connection.to);
             } else if (connection.to === node.id) {
-              other = this.nodes.find(n => n.id === connection.from);
+              other = this.nodes.find((n) => n.id === connection.from);
             }
-            
+
             if (other) {
               const dx = other.x - node.x;
               const dy = other.y - node.y;
               const distance = Math.sqrt(dx * dx + dy * dy);
               const idealDistance = 200; // Ideal distance for connected nodes
-              
+
               if (distance > 0) {
-                const force = (distance - idealDistance) / distance * 0.01;
+                const force = ((distance - idealDistance) / distance) * 0.01;
                 node.vx += dx * force;
                 node.vy += dy * force;
               }
             }
           });
-          
+
           // Node repulsion (prevents overlap)
-          this.nodes.forEach(other => {
+          this.nodes.forEach((other) => {
             if (node !== other) {
               const dx = node.x - other.x;
               const dy = node.y - other.y;
               const distance = Math.sqrt(dx * dx + dy * dy);
-              const minDistance = this.getNodeRadius(node) + this.getNodeRadius(other) + 80;
-              
+              const minDistance =
+                this.getNodeRadius(node) + this.getNodeRadius(other) + 80;
+
               if (distance < minDistance && distance > 0) {
-                const force = (minDistance - distance) / distance * 0.8;
+                const force = ((minDistance - distance) / distance) * 0.8;
                 node.vx += dx * force;
                 node.vy += dy * force;
               }
             }
           });
         });
-        
+
         // Apply velocities
-        this.nodes.forEach(node => {
+        this.nodes.forEach((node) => {
           node.x += node.vx;
           node.y += node.vy;
           node.vx *= 0.7; // More damping
           node.vy *= 0.7;
-          
+
           // Keep nodes within bounds
           const radius = this.getNodeRadius(node);
-          node.x = Math.max(radius, Math.min(this.canvas.width - radius, node.x));
-          node.y = Math.max(radius, Math.min(this.canvas.height - radius, node.y));
+          node.x = Math.max(
+            radius,
+            Math.min(this.canvas.width - radius, node.x)
+          );
+          node.y = Math.max(
+            radius,
+            Math.min(this.canvas.height - radius, node.y)
+          );
         });
       }
     }
-    
+
     getNodeRadius(node) {
       return 10 + node.size * 8; // Size 1: 18px, Size 2: 26px, Size 3: 34px
     }
-    
+
     handleMouseMove(event) {
       const rect = this.canvas.getBoundingClientRect();
       const x = event.clientX - rect.left;
       const y = event.clientY - rect.top;
-      
+
       this.hoveredNode = null;
-      this.nodes.forEach(node => {
+      this.nodes.forEach((node) => {
         const dx = x - node.x;
         const dy = y - node.y;
         const distance = Math.sqrt(dx * dx + dy * dy);
-        
+
         if (distance < this.getNodeRadius(node)) {
           this.hoveredNode = node;
           this.canvas.style.cursor = 'pointer';
         }
       });
-      
+
       if (!this.hoveredNode) {
         this.canvas.style.cursor = 'default';
       }
     }
-    
-    handleClick(event) {
+
+    handleClick() {
       if (this.hoveredNode) {
-        this.selectedNode = this.selectedNode === this.hoveredNode ? null : this.hoveredNode;
+        this.selectedNode =
+          this.selectedNode === this.hoveredNode ? null : this.hoveredNode;
       }
     }
-    
+
     handleResize() {
       this.resizeCanvas();
       this.applyPhysics();
     }
-    
+
     animate() {
       requestAnimationFrame(() => this.animate());
-      
+
       // Clear canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      
+
       // Draw connections
-      this.connections.forEach(connection => {
-        const fromNode = this.nodes.find(n => n.id === connection.from);
-        const toNode = this.nodes.find(n => n.id === connection.to);
-        
+      this.connections.forEach((connection) => {
+        const fromNode = this.nodes.find((n) => n.id === connection.from);
+        const toNode = this.nodes.find((n) => n.id === connection.to);
+
         if (fromNode && toNode) {
-          const isHighlighted = this.selectedNode && 
-            (this.selectedNode.id === fromNode.id || this.selectedNode.id === toNode.id);
-          
+          const isHighlighted =
+            this.selectedNode &&
+            (this.selectedNode.id === fromNode.id ||
+              this.selectedNode.id === toNode.id);
+
           this.ctx.beginPath();
           this.ctx.moveTo(fromNode.x, fromNode.y);
           this.ctx.lineTo(toNode.x, toNode.y);
@@ -250,31 +337,38 @@ const skillsConfig = {
           this.ctx.stroke();
         }
       });
-      
+
       // Draw nodes
-      this.nodes.forEach(node => {
+      this.nodes.forEach((node) => {
         const radius = this.getNodeRadius(node);
         const isHovered = node === this.hoveredNode;
         const isSelected = node === this.selectedNode;
-        const isDimmed = this.selectedNode && !isSelected && 
-          !this.connections.some(c => 
-            (c.from === this.selectedNode.id && c.to === node.id) ||
-            (c.to === this.selectedNode.id && c.from === node.id)
+        const isDimmed =
+          this.selectedNode &&
+          !isSelected &&
+          !this.connections.some(
+            (c) =>
+              (c.from === this.selectedNode.id && c.to === node.id) ||
+              (c.to === this.selectedNode.id && c.from === node.id)
           );
-        
+
         // Node circle
         this.ctx.beginPath();
         this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
         this.ctx.fillStyle = isSelected ? '#00d992' : '#64748b'; // Green when selected, gray otherwise
-        this.ctx.globalAlpha = isDimmed ? 0.3 : (isHovered || isSelected ? 1 : 0.8);
+        this.ctx.globalAlpha = isDimmed
+          ? 0.3
+          : isHovered || isSelected
+            ? 1
+            : 0.8;
         this.ctx.fill();
-        
+
         if (isSelected) {
           this.ctx.strokeStyle = '#00d992';
           this.ctx.lineWidth = 2;
           this.ctx.stroke();
         }
-        
+
         // Node text
         this.ctx.globalAlpha = isDimmed ? 0.3 : 1;
         this.ctx.fillStyle = '#e2e8f0';
@@ -283,11 +377,11 @@ const skillsConfig = {
         this.ctx.textBaseline = 'middle';
         this.ctx.fillText(node.name, node.x, node.y);
       });
-      
+
       this.ctx.globalAlpha = 1;
     }
   }
-  
+
   // Initialize when DOM is ready
   document.addEventListener('DOMContentLoaded', () => {
     new SkillsWeb('skills-web', skillsConfig);

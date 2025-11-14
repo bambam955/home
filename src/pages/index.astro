@@ -8,7 +8,7 @@ import SkillsWeb from '../components/SkillsWeb.astro';
 
 <Layout title="Home | Developer Portfolio">
   <Header />
-  
+
   <main class="min-h-screen">
     <!-- Hero Section -->
     <section class="py-20 px-4">
@@ -20,10 +20,16 @@ import SkillsWeb from '../components/SkillsWeb.astro';
           Building amazing web experiences with modern technologies
         </p>
         <div class="flex gap-4 justify-center">
-          <a href="/projects" class="bg-green-primary hover:bg-green-accent text-green-darker px-6 py-3 rounded-lg transition-colors">
+          <a
+            href="/projects"
+            class="bg-green-primary hover:bg-green-accent text-green-darker px-6 py-3 rounded-lg transition-colors"
+          >
             View Projects
           </a>
-          <a href="/about" class="border border-green-primary hover:bg-green-primary hover:text-green-darker text-green-primary px-6 py-3 rounded-lg transition-colors">
+          <a
+            href="/about"
+            class="border border-green-primary hover:bg-green-primary hover:text-green-darker text-green-primary px-6 py-3 rounded-lg transition-colors"
+          >
             About Me
           </a>
         </div>
@@ -37,24 +43,24 @@ import SkillsWeb from '../components/SkillsWeb.astro';
           Featured Projects
         </h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ProjectCard 
+          <ProjectCard
             title="Project One"
             description="A amazing web application built with modern technologies"
-            tags={["React", "TypeScript", "Tailwind"]}
+            tags={['React', 'TypeScript', 'Tailwind']}
             github="#"
             demo="#"
           />
-          <ProjectCard 
+          <ProjectCard
             title="Project Two"
             description="Another cool project showcasing different skills"
-            tags={["Node.js", "Express", "MongoDB"]}
+            tags={['Node.js', 'Express', 'MongoDB']}
             github="#"
             demo="#"
           />
-          <ProjectCard 
+          <ProjectCard
             title="Project Three"
             description="A creative solution to an interesting problem"
-            tags={["Vue.js", "Python", "PostgreSQL"]}
+            tags={['Vue.js', 'Python', 'PostgreSQL']}
             github="#"
             demo="#"
           />
@@ -70,8 +76,8 @@ import SkillsWeb from '../components/SkillsWeb.astro';
         </h2>
         <div class="mb-8 text-center">
           <p class="text-gray-dim max-w-2xl mx-auto">
-            Interactive skills visualization. Click any skill to highlight connections. 
-            Larger nodes represent areas of deeper expertise.
+            Interactive skills visualization. Click any skill to highlight
+            connections. Larger nodes represent areas of deeper expertise.
           </p>
         </div>
         <SkillsWeb />

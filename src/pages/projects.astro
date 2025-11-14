@@ -1,59 +1,59 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 ---
 
 <Layout title="Projects | Developer Portfolio">
   <Header />
-  
+
   <main class="min-h-screen py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <h1 class="text-4xl font-bold mb-12 text-center text-green-primary">
         My Projects
       </h1>
-      
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <ProjectCard 
+        <ProjectCard
           title="E-Commerce Platform"
           description="A full-stack e-commerce solution with user authentication, payment processing, and inventory management."
-          tags={["React", "Node.js", "MongoDB", "Stripe"]}
+          tags={['React', 'Node.js', 'MongoDB', 'Stripe']}
           github="https://github.com"
           demo="https://example.com"
         />
-        <ProjectCard 
+        <ProjectCard
           title="Task Management App"
           description="A collaborative task management application with real-time updates and team features."
-          tags={["Vue.js", "Express", "PostgreSQL", "Socket.io"]}
+          tags={['Vue.js', 'Express', 'PostgreSQL', 'Socket.io']}
           github="https://github.com"
           demo="https://example.com"
         />
-        <ProjectCard 
+        <ProjectCard
           title="Weather Dashboard"
           description="A responsive weather dashboard with location-based forecasts and interactive charts."
-          tags={["JavaScript", "API Integration", "Chart.js"]}
+          tags={['JavaScript', 'API Integration', 'Chart.js']}
           github="https://github.com"
           demo="https://example.com"
         />
-        <ProjectCard 
+        <ProjectCard
           title="Blog Platform"
           description="A modern blogging platform with markdown support, tags, and comment system."
-          tags={["Astro", "React", "Tailwind CSS"]}
+          tags={['Astro', 'React', 'Tailwind CSS']}
           github="https://github.com"
           demo="https://example.com"
         />
-        <ProjectCard 
+        <ProjectCard
           title="Portfolio Website"
           description="A responsive portfolio website showcasing projects and skills with smooth animations."
-          tags={["HTML", "CSS", "JavaScript", "GSAP"]}
+          tags={['HTML', 'CSS', 'JavaScript', 'GSAP']}
           github="https://github.com"
           demo="https://example.com"
         />
-        <ProjectCard 
+        <ProjectCard
           title="API Documentation"
           description="Interactive API documentation with live testing capabilities and comprehensive guides."
-          tags={["React", "Swagger", "OpenAPI"]}
+          tags={['React', 'Swagger', 'OpenAPI']}
           github="https://github.com"
           demo="https://example.com"
         />

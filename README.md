@@ -6,11 +6,11 @@ My personal website, built using Astro!
 
 I plan to build this site mostly from scratch, taking inspiration from the design and source code of the following templates and sites:
 
-| Repo | Example |
-| --- | --- |
-| <https://github.com/bue221/astro-portfolio> | <https://bue221.vercel.app/> |
-| <https://github.com/tim-hub/techtim-astro-bento-portfolio> | <https://techtim42.com/> |
-| <https://github.com/antfu/antfu.me> | <https://antfu.me/> |
+| Repo                                                       | Example                      |
+| ---------------------------------------------------------- | ---------------------------- |
+| <https://github.com/bue221/astro-portfolio>                | <https://bue221.vercel.app/> |
+| <https://github.com/tim-hub/techtim-astro-bento-portfolio> | <https://techtim42.com/>     |
+| <https://github.com/antfu/antfu.me>                        | <https://antfu.me/>          |
 
 There may be other sites that have useful designs too. See <https://github.com/bambam955/bambam955.github.io/issues/1> for additional links.
 

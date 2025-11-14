@@ -1,7 +1,7 @@
 ---
-import GithubIcon from "./icons/GithubIcon.astro";
-import LinkedinIcon from "./icons/LinkedinIcon.astro";
-import ExternalLinkIcon from "./icons/ExternalLinkIcon.astro";
+import GithubIcon from './icons/GithubIcon.astro';
+import LinkedinIcon from './icons/LinkedinIcon.astro';
+import ExternalLinkIcon from './icons/ExternalLinkIcon.astro';
 ---
 
 <footer class="bg-gray-medium border-t border-gray-light py-12">
@@ -9,21 +9,38 @@ import ExternalLinkIcon from "./icons/ExternalLinkIcon.astro";
     <div class="flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="text-center md:text-left">
         <h3 class="text-xl font-bold mb-2 text-green-primary">Get in Touch</h3>
-        <p class="text-gray-dim">Feel free to reach out for collaborations or just a friendly hello!</p>
+        <p class="text-gray-dim">
+          Feel free to reach out for collaborations or just a friendly hello!
+        </p>
       </div>
       <div class="flex gap-4">
-        <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="text-gray-dim hover:text-green-primary transition-colors p-2">
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-dim hover:text-green-primary transition-colors p-2"
+        >
           <GithubIcon />
         </a>
-        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="text-gray-dim hover:text-green-primary transition-colors p-2">
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-gray-dim hover:text-green-primary transition-colors p-2"
+        >
           <LinkedinIcon />
         </a>
-        <a href="mailto:contact@example.com" class="text-gray-dim hover:text-green-primary transition-colors p-2">
+        <a
+          href="mailto:contact@example.com"
+          class="text-gray-dim hover:text-green-primary transition-colors p-2"
+        >
           <ExternalLinkIcon />
         </a>
       </div>
     </div>
-    <div class="mt-8 pt-8 border-t border-gray-light text-center text-gray-dim text-sm">
+    <div
+      class="mt-8 pt-8 border-t border-gray-light text-center text-gray-dim text-sm"
+    >
       <p>&copy; 2024 Developer Portfolio. Built with Astro.</p>
     </div>
   </div>

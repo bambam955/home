@@ -8,8 +8,8 @@ export type Project = {
 
 export type BlogPost = {
   id: number;
-  title:string;
+  title: string;
   date: string;
   excerpt: string;
-  content: string; 
+  content: string;
 };

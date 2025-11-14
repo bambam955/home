@@ -13,7 +13,7 @@ jobs:
       contents: read
       security-events: write
     uses: ./.github/workflows/lint_and_format.yml
-    
+
   deploy_astro_site:
     permissions:
       contents: read

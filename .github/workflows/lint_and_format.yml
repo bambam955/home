@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install linting tools
-        run: | 
+        run: |
           npm install @microsoft/eslint-formatter-sarif@3.1.0
           npm ci
 
@@ -30,7 +30,7 @@ jobs:
 
       - name: Run eslint
         env:
-          SARIF_ESLINT_IGNORE_SUPPRESSED: "true"
+          SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
         run: npx eslint .
           --config eslint.config.mjs
           --format @microsoft/eslint-formatter-sarif
