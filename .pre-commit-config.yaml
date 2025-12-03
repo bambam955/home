@@ -20,5 +20,5 @@ repos:
         name: format
         entry: npm run format
         language: system
-        files: \.(js|ts|mjs|astro|md|mdx)$
+        files: \.(js|ts|mjs|astro|md|mdx|json)$
         pass_filenames: true
