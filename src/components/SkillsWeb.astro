@@ -113,9 +113,7 @@ const skillsConfig = {
 };
 ---
 
-<div
-  class="relative w-full h-[600px] bg-gray-medium/30 rounded-lg overflow-hidden"
->
+<div class="relative w-full h-[600px] bg-gray-medium/30 rounded-lg overflow-hidden">
   <canvas id="skills-web" class="w-full h-full"></canvas>
 </div>
 
@@ -241,8 +239,7 @@ const skillsConfig = {
               const dx = node.x - other.x;
               const dy = node.y - other.y;
               const distance = Math.sqrt(dx * dx + dy * dy);
-              const minDistance =
-                this.getNodeRadius(node) + this.getNodeRadius(other) + 80;
+              const minDistance = this.getNodeRadius(node) + this.getNodeRadius(other) + 80;
 
               if (distance < minDistance && distance > 0) {
                 const force = ((minDistance - distance) / distance) * 0.8;
@@ -262,14 +259,8 @@ const skillsConfig = {
 
           // Keep nodes within bounds
           const radius = this.getNodeRadius(node);
-          node.x = Math.max(
-            radius,
-            Math.min(this.canvas.width - radius, node.x)
-          );
-          node.y = Math.max(
-            radius,
-            Math.min(this.canvas.height - radius, node.y)
-          );
+          node.x = Math.max(radius, Math.min(this.canvas.width - radius, node.x));
+          node.y = Math.max(radius, Math.min(this.canvas.height - radius, node.y));
         });
       }
     }
@@ -302,8 +293,7 @@ const skillsConfig = {
 
     handleClick() {
       if (this.hoveredNode) {
-        this.selectedNode =
-          this.selectedNode === this.hoveredNode ? null : this.hoveredNode;
+        this.selectedNode = this.selectedNode === this.hoveredNode ? null : this.hoveredNode;
       }
     }
 
@@ -326,8 +316,7 @@ const skillsConfig = {
         if (fromNode && toNode) {
           const isHighlighted =
             this.selectedNode &&
-            (this.selectedNode.id === fromNode.id ||
-              this.selectedNode.id === toNode.id);
+            (this.selectedNode.id === fromNode.id || this.selectedNode.id === toNode.id);
 
           this.ctx.beginPath();
           this.ctx.moveTo(fromNode.x, fromNode.y);
@@ -356,11 +345,7 @@ const skillsConfig = {
         this.ctx.beginPath();
         this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
         this.ctx.fillStyle = isSelected ? '#00d992' : '#64748b'; // Green when selected, gray otherwise
-        this.ctx.globalAlpha = isDimmed
-          ? 0.3
-          : isHovered || isSelected
-            ? 1
-            : 0.8;
+        this.ctx.globalAlpha = isDimmed ? 0.3 : isHovered || isSelected ? 1 : 0.8;
         this.ctx.fill();
 
         if (isSelected) {

@@ -69,8 +69,7 @@
 
       // Draw characters
       for (let i = 0; i < this.drops.length; i++) {
-        const char =
-          this.characters[Math.floor(Math.random() * this.characters.length)];
+        const char = this.characters[Math.floor(Math.random() * this.characters.length)];
         const x = i * this.fontSize;
         const y = this.drops[i] * this.fontSize;
 

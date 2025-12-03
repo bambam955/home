@@ -2,9 +2,7 @@
 // Simple Matrix Rain Component
 ---
 
-<canvas
-  id="matrix-rain"
-  class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+<canvas id="matrix-rain" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
 
 <script>
   class MatrixRain {
@@ -51,8 +49,7 @@
       this.ctx.globalAlpha = 0.3;
 
       for (let i = 0; i < this.drops.length; i++) {
-        const char =
-          this.characters[Math.floor(Math.random() * this.characters.length)];
+        const char = this.characters[Math.floor(Math.random() * this.characters.length)];
         const x = i * this.fontSize;
         const y = this.drops[i] * this.fontSize;
 

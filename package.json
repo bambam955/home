@@ -9,7 +9,8 @@
     "prepare": "husky",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "lint-staged": {
     "*.{js,ts,mjs,astro}": [
