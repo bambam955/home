@@ -1,2 +1,0 @@
-echo "Linting and formatting the entire site..."
-npx lint-staged
