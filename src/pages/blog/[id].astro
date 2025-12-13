@@ -1,105 +1,52 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
-export function getStaticPaths() {
-  return [
-    { params: { id: 'getting-started-with-astro' } },
-    { params: { id: 'react-best-practices' } },
-    { params: { id: 'tailwind-css-tips' } },
-  ];
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { id: post.slug },
+    props: { post },
+  }));
 }
 
-const { id } = Astro.params;
-
-const posts = {
-  'getting-started-with-astro': {
-    title: 'Getting Started with Astro',
-    date: 'March 15, 2024',
-    readTime: '5 min read',
-    content: `
-      <p>Astro is a modern web framework that helps you build fast, content-focused websites. In this post, we will explore the key features of Astro and how to get started with it.</p>
-      
-      <h2>What is Astro?</h2>
-      <p>Astro is a web framework that focuses on delivering fast websites by shipping less JavaScript. It uses a unique island architecture where only the interactive components need JavaScript.</p>
-      
-      <h2>Key Features</h2>
-      <ul>
-        <li>Island Architecture</li>
-        <li>Zero JavaScript by default</li>
-        <li>Supports multiple UI frameworks</li>
-        <li>Edge-ready deployment</li>
-      </ul>
-      
-      <h2>Getting Started</h2>
-      <p>To create a new Astro project, run:</p>
-      <pre><code>npm create astro@latest</code></pre>
-      
-      <p>This will guide you through the setup process and create a new Astro project with your preferred configuration.</p>
-    `,
-  },
-  'react-best-practices': {
-    title: 'React Best Practices in 2024',
-    date: 'March 10, 2024',
-    readTime: '8 min read',
-    content: `
-      <p>React continues to evolve, and staying up to date with best practices is crucial for building maintainable applications. Here are the key practices you should follow in 2024.</p>
-      
-      <h2>Component Design</h2>
-      <p>Keep components small and focused. Each component should have a single responsibility and be reusable across your application.</p>
-      
-      <h2>State Management</h2>
-      <p>Use React hooks for local state and consider libraries like Zustand or Redux Toolkit for complex state management needs.</p>
-      
-      <h2>Performance Optimization</h2>
-      <p>Implement code splitting, lazy loading, and memoization to ensure your React applications remain fast and responsive.</p>
-    `,
-  },
-  'tailwind-css-tips': {
-    title: 'Tailwind CSS Tips and Tricks',
-    date: 'March 5, 2024',
-    readTime: '6 min read',
-    content: `
-      <p>Tailwind CSS is a utility-first CSS framework that provides low-level utility classes to build custom designs. Here are some tips to master Tailwind CSS.</p>
-      
-      <h2>Custom Configuration</h2>
-      <p>Extend Tailwind is default theme in your tailwind.config.js file to add custom colors, spacing, and more.</p>
-      
-      <h2>Component Classes</h2>
-      <p>Use the @apply directive to create reusable component classes while maintaining the utility-first approach.</p>
-      
-      <h2>Responsive Design</h2>
-      <p>Master Tailwind is responsive prefixes (sm:, md:, lg:, xl:) to create truly responsive designs.</p>
-    `,
-  },
-};
-
-const post = posts[id as keyof typeof posts];
-if (!post) {
-  return Astro.redirect('/404');
+interface Props {
+  post: any;
 }
+
+const { post } = Astro.props;
+const { Content } = await post.render();
 ---
 
-<Layout title={post.title + ' | Blog'}>
+<Layout title={post.data.title + ' | Blog'}>
   <Header />
 
   <main class="min-h-screen py-20 px-4">
     <article class="max-w-4xl mx-auto">
       <header class="mb-12">
         <h1 class="text-4xl font-bold mb-4 text-green-primary">
-          {post.title}
+          {post.data.title}
         </h1>
         <div class="flex items-center gap-4 text-gray-dim">
-          <span>{post.date}</span>
+          <span
+            >{
+              post.data.date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }</span
+          >
           <span>•</span>
-          <span>{post.readTime}</span>
+          <span>{post.data.readTime}</span>
         </div>
       </header>
 
       <div class="bg-gray-medium rounded-lg p-8 shadow-soft">
         <div class="prose prose-invert max-w-none text-gray-dim">
-          <div set:html={post.content} />
+          <Content />
         </div>
       </div>
 

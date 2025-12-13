@@ -9,11 +9,18 @@ repos:
 
   - repo: local
     hooks:
-      - id: lint
-        name: lint
-        entry: npm run lint:fix
+      - id: eslint
+        name: eslint
+        entry: npx eslint --cache --fix
         language: system
-        files: \.(js|ts|mjs|astro|md|mdx)$
+        files: \.(js|ts|mjs|astro)$
+        pass_filenames: true
+
+      - id: markdownlint
+        name: limarkdownlintnt
+        entry: npx markdownlint --fix
+        language: system
+        files: \.(md|mdx)$
         pass_filenames: true
 
       - id: format
