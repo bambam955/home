@@ -1,9 +1,11 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
+  # Still in development, don't want to deploy yet
+  # push:
+  #   branches:
+  #     - main
+  workflow_call:
 
 permissions:
   contents: read
