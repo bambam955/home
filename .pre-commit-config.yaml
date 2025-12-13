@@ -25,7 +25,7 @@ repos:
 
       - id: format
         name: format
-        entry: npm run format
+        entry: npx prettier --write
         language: system
         files: \.(js|ts|mjs|astro|md|mdx|json)$
         pass_filenames: true
