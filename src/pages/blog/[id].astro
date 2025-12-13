@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 
 export async function getStaticPaths() {
@@ -21,8 +20,6 @@ const { Content } = await post.render();
 ---
 
 <Layout title={post.data.title + ' | Blog'}>
-  <Header />
-
   <main class="min-h-screen py-20 px-4">
     <article class="max-w-4xl mx-auto">
       <header class="mb-12">

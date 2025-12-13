@@ -2,10 +2,17 @@
 export interface Props {
   title: string;
   description?: string;
+  showBreadcrumbs?: boolean;
 }
 
-const { title, description = 'A developer portfolio built with Astro' } = Astro.props;
+const {
+  title,
+  description = 'A developer portfolio built with Astro',
+  showBreadcrumbs = true,
+} = Astro.props;
 import MatrixRain from '../components/MatrixRain.astro';
+import Header from '../components/Header.astro';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
 ---
 
 <!doctype html>
@@ -27,6 +34,8 @@ import MatrixRain from '../components/MatrixRain.astro';
   <body class="bg-gray-dark text-gray-text min-h-screen font-mono">
     <MatrixRain />
     <div class="relative z-10">
+      <Header />
+      {showBreadcrumbs && <Breadcrumbs />}
       <slot />
     </div>
   </body>
