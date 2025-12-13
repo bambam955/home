@@ -1,0 +1,31 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-added-large-files
+
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: npx eslint --cache --fix
+        language: system
+        files: \.(js|ts|mjs|astro)$
+        pass_filenames: true
+
+      - id: markdownlint
+        name: markdownlint
+        entry: npx markdownlint --fix
+        language: system
+        files: \.(md|mdx)$
+        pass_filenames: true
+
+      - id: format
+        name: format
+        entry: npx prettier --write
+        language: system
+        files: \.(js|ts|mjs|astro|md|mdx|json)$
+        pass_filenames: true

@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="About | Developer Portfolio">
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-center text-green-primary">About Me</h1>
+
+      <div class="bg-gray-medium rounded-lg p-8 shadow-soft">
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-green-primary">My Story</h2>
+          <div class="text-gray-dim leading-relaxed mb-4">
+            <p class="mb-4">
+              I am a passionate developer with a love for creating beautiful, functional web
+              applications. My journey in tech started with curiosity and has evolved into a career
+              focused on building meaningful digital experiences.
+            </p>
+            <p>
+              I specialize in modern web technologies and enjoy working on projects that challenge
+              me to learn and grow as a developer.
+            </p>
+          </div>
+        </div>
+
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-green-primary">Skills</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-gray-dark p-4 rounded-lg">
+              <h3 class="font-semibold mb-2 text-green-primary">Frontend</h3>
+              <ul class="text-gray-dim space-y-1">
+                <li>• React / Vue.js</li>
+                <li>• TypeScript</li>
+                <li>• Tailwind CSS</li>
+                <li>• Astro</li>
+              </ul>
+            </div>
+            <div class="bg-gray-dark p-4 rounded-lg">
+              <h3 class="font-semibold mb-2 text-green-primary">Backend</h3>
+              <ul class="text-gray-dim space-y-1">
+                <li>• Node.js</li>
+                <li>• Express</li>
+                <li>• PostgreSQL</li>
+                <li>• MongoDB</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-2xl font-bold mb-4 text-green-primary">Get in Touch</h2>
+          <p class="text-gray-dim mb-4">
+            I am always interested in hearing about new opportunities and exciting projects. Feel
+            free to reach out if you would like to collaborate or just have a chat!
+          </p>
+          <div class="mt-4">
+            <a
+              href="mailto:contact@example.com"
+              class="bg-green-primary hover:bg-green-accent text-green-darker px-6 py-3 rounded-lg transition-colors inline-block"
+            >
+              Send me an email
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer />
+</Layout>

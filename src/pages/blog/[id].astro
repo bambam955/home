@@ -1,0 +1,59 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Footer from '../../components/Footer.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { id: post.slug },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: any;
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title + ' | Blog'}>
+  <main class="min-h-screen py-20 px-4">
+    <article class="max-w-4xl mx-auto">
+      <header class="mb-12">
+        <h1 class="text-4xl font-bold mb-4 text-green-primary">
+          {post.data.title}
+        </h1>
+        <div class="flex items-center gap-4 text-gray-dim">
+          <span
+            >{
+              post.data.date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })
+            }</span
+          >
+          <span>•</span>
+          <span>{post.data.readTime}</span>
+        </div>
+      </header>
+
+      <div class="bg-gray-medium rounded-lg p-8 shadow-soft">
+        <div class="prose prose-invert max-w-none text-gray-dim">
+          <Content />
+        </div>
+      </div>
+
+      <footer class="mt-12 pt-8 border-t border-gray-light">
+        <a href="/blog" class="text-green-primary hover:text-green-accent transition-colors">
+          ← Back to Blog
+        </a>
+      </footer>
+    </article>
+  </main>
+
+  <Footer />
+</Layout>

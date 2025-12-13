@@ -2,5 +2,6 @@
   "plugins": ["prettier-plugin-astro"],
   "singleQuote": true,
   "semi": true,
-  "trailingComma": "es5"
+  "trailingComma": "es5",
+  "printWidth": 100
 }

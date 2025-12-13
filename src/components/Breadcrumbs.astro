@@ -1,0 +1,43 @@
+---
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = Astro.url.pathname } = Astro.props;
+
+// Generate breadcrumb segments from the current path
+const segments = currentPath.split('/').filter(Boolean);
+
+// Generate breadcrumb items with paths
+const breadcrumbs = [
+  { label: 'home', path: '/' },
+  ...segments.map((segment, index) => ({
+    label: segment.replace(/-/g, ' '),
+    path: '/' + segments.slice(0, index + 1).join('/'),
+  })),
+];
+---
+
+<nav class="py-3">
+  <div class="max-w-4xl mx-auto">
+    <div class="flex items-center gap-2 text-sm font-mono text-gray-dim">
+      {
+        breadcrumbs.map((crumb, index) => (
+          <>
+            <a
+              href={crumb.path}
+              class={`transition-colors ${
+                index === breadcrumbs.length - 1
+                  ? 'text-green-primary font-semibold'
+                  : 'hover:text-gray-text'
+              }`}
+            >
+              {crumb.label}
+            </a>
+            {index < breadcrumbs.length - 1 && <span class="text-gray-dim">/</span>}
+          </>
+        ))
+      }
+    </div>
+  </div>
+</nav>

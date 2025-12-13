@@ -1,0 +1,45 @@
+---
+import type { ProjectData } from '../data/projects';
+
+export interface Props {
+  project: ProjectData;
+}
+
+const { project } = Astro.props;
+---
+
+<div
+  class="bg-gray-medium border border-gray-light hover:bg-green-primary hover:border-green-primary transition-all duration-300 p-6 rounded-lg shadow-soft hover:shadow-soft-lg"
+>
+  <h3 class="text-xl font-bold mb-3 text-green-primary hover:text-gray-dark">
+    {project.title}
+  </h3>
+  <p class="text-gray-dim mb-4 hover:text-gray-dark">{project.description}</p>
+  <div class="flex flex-wrap gap-2 mb-4">
+    {
+      project.tags.map((tag) => (
+        <span class="bg-gray-dark text-green-accent px-3 py-1 rounded-full text-sm hover:bg-white hover:text-gray-dark">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+  <div class="flex gap-4">
+    <a
+      href={project.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-green-primary hover:text-gray-dark transition-colors"
+    >
+      GitHub
+    </a>
+    <a
+      href={project.demo}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-green-primary hover:text-gray-dark transition-colors"
+    >
+      Live Demo
+    </a>
+  </div>
+</div>
