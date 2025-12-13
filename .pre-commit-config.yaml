@@ -17,7 +17,7 @@ repos:
         pass_filenames: true
 
       - id: markdownlint
-        name: limarkdownlintnt
+        name: markdownlint
         entry: npx markdownlint --fix
         language: system
         files: \.(md|mdx)$

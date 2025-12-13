@@ -4,9 +4,10 @@ import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import prettierPlugin from 'eslint-plugin-prettier';
 import eslintJs from '@eslint/js';
 import globals from 'globals';
+import type { Linter } from 'eslint';
 
-export default [
-  eslintJs.configs.recommended, // Base recommended ESLint rules
+const config: Linter.Config[] = [
+  eslintJs.configs.recommended,
   ...eslintAstroPlugin.configs.recommended,
   {
     ignores: ['.astro/**'],
@@ -20,20 +21,20 @@ export default [
   {
     files: ['**/*.{js,ts}'],
     languageOptions: {
-      parser: typescriptEslintParser, // Use TypeScript parser
+      parser: typescriptEslintParser,
       parserOptions: {
         project: './tsconfig.json',
       },
     },
     plugins: {
-      '@typescript-eslint': typescriptEslintPlugin, // TypeScript plugin
-      prettier: prettierPlugin, // Prettier plugin
+      '@typescript-eslint': typescriptEslintPlugin,
+      prettier: prettierPlugin,
     },
-
-    // Customize other rules here if needed
     rules: {
-      'prettier/prettier': ['error'], // Enforce Prettier strictly
-      ...typescriptEslintPlugin.configs.recommended.rules, // Additional recommended TypeScript rules
+      'prettier/prettier': ['error'],
+      ...typescriptEslintPlugin.configs.recommended.rules,
     },
   },
 ];
+
+export default config;
