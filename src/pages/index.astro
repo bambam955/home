@@ -3,6 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import SkillsWeb from '../components/SkillsWeb.astro';
+import { projects } from '../data/projects';
+
+const featuredProjects = projects.filter((p) => p.featured);
 ---
 
 <Layout title="Home | Developer Portfolio" showBreadcrumbs={false}>
@@ -38,27 +41,7 @@ import SkillsWeb from '../components/SkillsWeb.astro';
       <div class="max-w-6xl mx-auto">
         <h2 class="text-3xl font-bold text-center mb-12 text-green-primary">Featured Projects</h2>
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <ProjectCard
-            title="Project One"
-            description="A amazing web application built with modern technologies"
-            tags={['React', 'TypeScript', 'Tailwind']}
-            github="#"
-            demo="#"
-          />
-          <ProjectCard
-            title="Project Two"
-            description="Another cool project showcasing different skills"
-            tags={['Node.js', 'Express', 'MongoDB']}
-            github="#"
-            demo="#"
-          />
-          <ProjectCard
-            title="Project Three"
-            description="A creative solution to an interesting problem"
-            tags={['Vue.js', 'Python', 'PostgreSQL']}
-            github="#"
-            demo="#"
-          />
+          {featuredProjects.map((project) => <ProjectCard project={project} />)}
         </div>
       </div>
     </section>

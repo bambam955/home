@@ -1,25 +1,23 @@
 ---
+import type { ProjectData } from '../data/projects';
+
 export interface Props {
-  title: string;
-  description: string;
-  tags: string[];
-  github: string;
-  demo: string;
+  project: ProjectData;
 }
 
-const { title, description, tags, github, demo } = Astro.props;
+const { project } = Astro.props;
 ---
 
 <div
   class="bg-gray-medium border border-gray-light hover:bg-green-primary hover:border-green-primary transition-all duration-300 p-6 rounded-lg shadow-soft hover:shadow-soft-lg"
 >
   <h3 class="text-xl font-bold mb-3 text-green-primary hover:text-gray-dark">
-    {title}
+    {project.title}
   </h3>
-  <p class="text-gray-dim mb-4 hover:text-gray-dark">{description}</p>
+  <p class="text-gray-dim mb-4 hover:text-gray-dark">{project.description}</p>
   <div class="flex flex-wrap gap-2 mb-4">
     {
-      tags.map((tag) => (
+      project.tags.map((tag) => (
         <span class="bg-gray-dark text-green-accent px-3 py-1 rounded-full text-sm hover:bg-white hover:text-gray-dark">
           {tag}
         </span>
@@ -28,7 +26,7 @@ const { title, description, tags, github, demo } = Astro.props;
   </div>
   <div class="flex gap-4">
     <a
-      href={github}
+      href={project.github}
       target="_blank"
       rel="noopener noreferrer"
       class="text-green-primary hover:text-gray-dark transition-colors"
@@ -36,7 +34,7 @@ const { title, description, tags, github, demo } = Astro.props;
       GitHub
     </a>
     <a
-      href={demo}
+      href={project.demo}
       target="_blank"
       rel="noopener noreferrer"
       class="text-green-primary hover:text-gray-dark transition-colors"
