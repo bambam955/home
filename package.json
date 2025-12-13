@@ -1,7 +1,8 @@
 {
-  "name": "bmoore-personal-site",
-  "type": "module",
+  "name": "@bambam955/personal-site",
   "description": "Bennett Moore's personal website",
+  "private": true,
+  "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
