@@ -7,6 +7,24 @@ on:
       - main
 
 jobs:
+  format-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Node setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Run Prettier
+        run: npx prettier --check .
+
   lint:
     runs-on: ubuntu-latest
     permissions:
@@ -16,10 +34,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Node setup
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: 22
           cache: npm
 
       - name: Install dependencies
@@ -40,20 +58,3 @@ jobs:
         with:
           sarif_file: eslint-results.sarif
           wait-for-processing: true
-  check-formatting:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Check formatting with Prettier
-        run: npx prettier --check .
