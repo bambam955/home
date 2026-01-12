@@ -1,1 +1,21 @@
 @import 'tailwindcss';
+
+@theme {
+  --color-green-dark: #0d2818;
+  --color-green-darker: #0a1f12;
+  --color-green-primary: #00d992;
+  --color-green-light: #00d992;
+  --color-green-accent: #00d992;
+  --color-green-subtle: #00d992;
+  --color-gray-dark: #020617;
+  --color-gray-medium: #0f172a;
+  --color-gray-light: #1e293b;
+  --color-gray-text: #e2e8f0;
+  --color-gray-dim: #64748b;
+
+  --font-family-sans: Inter, system-ui, sans-serif;
+  --font-family-mono: JetBrains Mono, Fira Code, SF Mono, Monaco, Inconsolata, Roboto Mono, Consolas, monospace;
+
+  --shadow-soft: 0 4px 6px -1px rgba(34, 197, 94, 0.1), 0 2px 4px -1px rgba(34, 197, 94, 0.06);
+  --shadow-soft-lg: 0 10px 15px -3px rgba(34, 197, 94, 0.1), 0 4px 6px -2px rgba(34, 197, 94, 0.05);
+}
