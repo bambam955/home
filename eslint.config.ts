@@ -7,8 +7,8 @@ import type { Linter } from 'eslint';
 
 const config: Linter.Config[] = [
   eslintJs.configs.recommended,
-  ...eslintAstroPlugin.configs.recommended,
   ...typescriptEslint.configs.recommended,
+  ...eslintAstroPlugin.configs.recommended,
   {
     ignores: ['.astro/**'],
   },

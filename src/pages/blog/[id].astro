@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
 
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  post: any;
+  post: CollectionEntry<'blog'>;
 }
 
 const { post } = Astro.props;

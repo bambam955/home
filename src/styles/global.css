@@ -14,7 +14,8 @@
   --color-gray-dim: #64748b;
 
   --font-family-sans: Inter, system-ui, sans-serif;
-  --font-family-mono: JetBrains Mono, Fira Code, SF Mono, Monaco, Inconsolata, Roboto Mono, Consolas, monospace;
+  --font-family-mono:
+    JetBrains Mono, Fira Code, SF Mono, Monaco, Inconsolata, Roboto Mono, Consolas, monospace;
 
   --shadow-soft: 0 4px 6px -1px rgba(34, 197, 94, 0.1), 0 2px 4px -1px rgba(34, 197, 94, 0.06);
   --shadow-soft-lg: 0 10px 15px -3px rgba(34, 197, 94, 0.1), 0 4px 6px -2px rgba(34, 197, 94, 0.05);
