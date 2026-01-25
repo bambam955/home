@@ -1,5 +1,7 @@
 # bemoore.life
 
+<https://bemoore.life>
+
 My personal website, built with Astro and Tailwind CSS.
 
 ## Development
