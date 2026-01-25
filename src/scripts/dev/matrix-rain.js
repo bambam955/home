@@ -65,7 +65,7 @@ class MatrixRain {
 
   /**
    * Draw gradients split across both mask canvases.
-   * 
+   *
    * Each column has a pattern: 75% gradient (dark→transparent) + 25% solid dark.
    * The pattern is split across both canvases based on columnShifts, so when
    * the canvases tile vertically, each column's pattern continues seamlessly.
@@ -129,14 +129,34 @@ class MatrixRain {
             ctx.fillStyle = CONFIG.darkColor;
             ctx.fillRect(x, localStart, w, localEnd - localStart);
           } else {
-            this.drawGradientSegment(ctx, x, localStart, localEnd, drawStart, shift, gradientLength, totalHeight, w);
+            this.drawGradientSegment(
+              ctx,
+              x,
+              localStart,
+              localEnd,
+              drawStart,
+              shift,
+              gradientLength,
+              totalHeight,
+              w
+            );
           }
         }
       }
     }
   }
 
-  drawGradientSegment(ctx, x, localStart, localEnd, drawStart, shift, gradientLength, totalHeight, w) {
+  drawGradientSegment(
+    ctx,
+    x,
+    localStart,
+    localEnd,
+    drawStart,
+    shift,
+    gradientLength,
+    totalHeight,
+    w
+  ) {
     // Calculate what portion of the gradient this segment represents
     const patternStart = (drawStart - shift + totalHeight) % totalHeight;
     const patternEnd = patternStart + (localEnd - localStart);
