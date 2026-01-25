@@ -13,7 +13,7 @@ This is Bennett Moore's personal website, built with Astro and Tailwind CSS v4.
 
 ## Project Structure
 
-```
+```text
 src/
 ├── components/       # Reusable Astro components
 │   ├── buttons/      # Button variants (GradientButton, TextButton)
