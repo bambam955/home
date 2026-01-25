@@ -1,6 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import GradientButton from '../components/buttons/GradientButton.astro';
+import CalendarIcon from '../components/icons/CalendarIcon.astro';
+import ClockIcon from '../components/icons/ClockIcon.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
@@ -49,26 +51,33 @@ const categories = [
       <div class="space-y-8" id="posts-container">
         {postsByDate.map((post) => (
           <article
-            class="post-item bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg transition-shadow"
+            class="post-item bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg hover:border-peach-primary/50 border border-transparent transition-all"
             data-categories={JSON.stringify(post.data.categories || [])}
           >
-            <h2 class="text-2xl font-bold mb-3 text-gradient-accent">
-              <a href={`/blog/${post.id}`} class="hover:text-gradient-primary transition-all">
-                {post.data.title}
-              </a>
-            </h2>
-            <p class="text-gray-dim mb-4">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+              <h2 class="text-2xl font-bold text-gradient-accent">
+                <a href={`/blog/${post.id}`} class="hover:text-gradient-primary transition-all">
+                  {post.data.title}
+                </a>
+              </h2>
+              <div class="flex items-center gap-4 text-sm text-gray-dim shrink-0">
+                <span class="flex items-center gap-1.5">
+                  <CalendarIcon size={14} />
+                  {post.data.pubDate.toLocaleDateString()}
+                </span>
+                <span class="flex items-center gap-1.5">
+                  <ClockIcon size={14} />
+                  {post.data.readTime}
+                </span>
+              </div>
+            </div>
+            <p class="text-gray-dim italic mb-4">
               {post.data.description || 'Read more about this topic...'}
             </p>
-            <div class="flex items-center gap-4 text-sm text-gray-dim mb-3">
-              <span>{post.data.pubDate.toLocaleDateString()}</span>
-              <span>•</span>
-              <span>{post.data.readTime}</span>
-            </div>
             {post.data.categories && (
               <div class="flex gap-2 flex-wrap">
                 {post.data.categories.map((cat) => (
-                  <span class="px-3 py-1 rounded-full text-xs bg-gray-medium text-gray-text">
+                  <span class="px-4 py-1.5 rounded-full text-sm bg-gray-medium text-gray-text">
                     {cat}
                   </span>
                 ))}
