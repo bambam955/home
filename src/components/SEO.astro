@@ -38,9 +38,8 @@ const personSchema = {
   url: Astro.site?.toString(),
   jobTitle: 'Software Developer',
   sameAs: [
-    // Add your social profiles here
-    // 'https://github.com/bambam955',
-    // 'https://linkedin.com/in/yourprofile',
+    'https://github.com/bambam955',
+    'https://www.linkedin.com/in/bennett-a-moore/',
   ],
 };
 
@@ -77,13 +76,6 @@ const articleSchema = type === 'article' ? {
 <meta property="og:site_name" content="Bennett Moore" />
 {publishedTime && <meta property="article:published_time" content={publishedTime} />}
 {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-
-<!-- Twitter -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:url" content={canonicalURL} />
-<meta name="twitter:title" content={title} />
-<meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={imageURL} />
 
 <!-- Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />

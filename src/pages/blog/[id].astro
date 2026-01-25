@@ -15,7 +15,12 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={post.data.title + ' | Blog'}>
+<Layout
+  title={post.data.title + ' | Blog'}
+  description={post.data.description || `Read ${post.data.title} on Bennett Moore's blog.`}
+  type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+>
   <main class="min-h-screen py-20 px-4">
     <article class="max-w-4xl mx-auto">
       <header class="mb-12">
