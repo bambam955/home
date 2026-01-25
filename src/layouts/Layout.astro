@@ -1,16 +1,26 @@
 ---
 import '../styles/global.css';
+import SEO from '../components/SEO.astro';
 
 export interface Props {
   title: string;
   description?: string;
   showBreadcrumbs?: boolean;
+  // SEO props
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 const {
   title,
-  description = 'A developer portfolio built with Astro',
+  description = 'Personal website of Bennett Moore - Christian, musician, and software developer',
   showBreadcrumbs = true,
+  image,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
 } = Astro.props;
 
 import Header from '../components/Header.astro';
@@ -33,11 +43,22 @@ const bodyClass = bodyStyles[pageType] + ' min-h-screen';
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    
+    <!-- SEO Component -->
+    <SEO 
+      title={title}
+      description={description}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+    />
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
