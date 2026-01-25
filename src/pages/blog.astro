@@ -52,7 +52,7 @@ const categories = [
         {postsByDate.map((post) => (
           <a
             href={`/blog/${post.id}`}
-            class="post-item block bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg border border-gray-light/30 hover:border-gray-light/70 transition-all cursor-pointer"
+            class="post-item block bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg border border-gray-light/40 hover:border-gray-light/70 transition-all cursor-pointer"
             data-categories={JSON.stringify(post.data.categories || [])}
           >
             <article>
