@@ -79,6 +79,16 @@
     0 0 20px rgba(244, 164, 96, 0.2);
 }
 
+/* Gradient headings in prose content */
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  background: linear-gradient(to right, #f4a460, #ffb3d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Typography (prose) customization for dark theme */
 .prose {
   --tw-prose-body: var(--color-gray-text);

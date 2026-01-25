@@ -11,11 +11,13 @@ const allProjects = dev_projects;
 <Layout title="Development | Bennett Moore">
   <main class="min-h-screen py-20 px-4">
     <div class="max-w-6xl mx-auto">
-      <h1 class="mb-8 text-center">Software Development</h1>
+      <h1 class="text-4xl font-bold mb-8 text-center text-gradient-primary">
+        Software Development
+      </h1>
 
       <div class="bg-gray-dark rounded-lg p-8 shadow-soft mb-8">
         <div class="mb-8">
-          <h2 class="mb-4">About My Work</h2>
+          <h2 class="text-2xl font-bold mb-4 text-gradient-primary">About My Work</h2>
           <div class="text-gray-dim leading-relaxed mb-4">
             <p>
               <!-- TODO: write intro blurb about who I am as a software developer -->
@@ -26,7 +28,7 @@ const allProjects = dev_projects;
 
         <!-- Featured Projects -->
         <section class="mb-12">
-          <h2 class="mb-6">Featured Projects</h2>
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">Featured Projects</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredProjects.map((project) => <ProjectCard project={project} />)}
           </div>
@@ -34,7 +36,7 @@ const allProjects = dev_projects;
 
         <!-- All Projects -->
         <section class="mb-12">
-          <h2 class="mb-6">All Projects</h2>
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">All Projects</h2>
           <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {allProjects.map((project) => <ProjectCard project={project} />)}
           </div>
@@ -42,7 +44,7 @@ const allProjects = dev_projects;
 
         <!-- Skills Section -->
         <section class="mb-8">
-          <h2 class="mb-6">Skills & Technologies</h2>
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">Skills & Technologies</h2>
           <div class="mb-6 text-center">
             <p class="text-gray-dim max-w-2xl mx-auto">
               Interactive visualization of my technical skills. Click any skill's node to highlight
