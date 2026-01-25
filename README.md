@@ -1,29 +1,18 @@
-# bambam955.github.io
+# bemoore.life
 
-My personal website, built using Astro!
+My personal website, built with Astro and Tailwind CSS.
 
-## Inspiration
+## Development
 
-I plan to build this site mostly from scratch, taking inspiration from the design and source code of the following templates and sites:
+```bash
+npm install
+just --list   # See available commands
+```
 
-| Repo                                                       | Example                      |
-| ---------------------------------------------------------- | ---------------------------- |
-| <https://github.com/bue221/astro-portfolio>                | <https://bue221.vercel.app/> |
-| <https://github.com/tim-hub/techtim-astro-bento-portfolio> | <https://techtim42.com/>     |
-| <https://github.com/antfu/antfu.me>                        | <https://antfu.me/>          |
+## Tech Stack
 
-There may be other sites that have useful designs too. See <https://github.com/bambam955/bambam955.github.io/issues/1> for additional links.
+- Astro 5
+- Tailwind CSS 4
+- TypeScript
 
-## Goals
-
-I'm going to aim for a site that is sleek and minimalistic while still containing all the main features and pages that I want:
-
-- Home page
-- Project portfolio
-- Resume/CV
-  - Work experience
-  - Education
-  - Skills (tools, languages, etc)
-  - Downloadable PDF of my actual resume
-- Blog
-- Links to socials/profiles
+See [AGENTS.md](AGENTS.md) for detailed architecture and conventions.
