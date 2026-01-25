@@ -50,40 +50,41 @@ const categories = [
 
       <div class="space-y-8" id="posts-container">
         {postsByDate.map((post) => (
-          <article
-            class="post-item bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg hover:border-peach-primary/50 border border-transparent transition-all"
+          <a
+            href={`/blog/${post.id}`}
+            class="post-item block bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg hover:border-peach-primary/50 border border-transparent transition-all cursor-pointer"
             data-categories={JSON.stringify(post.data.categories || [])}
           >
-            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
-              <h2 class="text-2xl font-bold text-gradient-accent">
-                <a href={`/blog/${post.id}`} class="hover:text-gradient-primary transition-all">
+            <article>
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                <h2 class="text-2xl font-bold text-gradient-accent">
                   {post.data.title}
-                </a>
-              </h2>
-              <div class="flex items-center gap-4 text-sm text-gray-dim shrink-0">
-                <span class="flex items-center gap-1.5">
-                  <CalendarIcon size={14} />
-                  {post.data.pubDate.toLocaleDateString()}
-                </span>
-                <span class="flex items-center gap-1.5">
-                  <ClockIcon size={14} />
-                  {post.data.readTime}
-                </span>
-              </div>
-            </div>
-            <p class="text-gray-dim italic mb-4">
-              {post.data.description || 'Read more about this topic...'}
-            </p>
-            {post.data.categories && (
-              <div class="flex gap-2 flex-wrap">
-                {post.data.categories.map((cat) => (
-                  <span class="px-4 py-1.5 rounded-full text-sm bg-gray-medium text-gray-text">
-                    {cat}
+                </h2>
+                <div class="flex items-center gap-4 text-sm text-gray-dim shrink-0">
+                  <span class="flex items-center gap-1.5">
+                    <CalendarIcon size={14} />
+                    {post.data.pubDate.toLocaleDateString()}
                   </span>
-                ))}
+                  <span class="flex items-center gap-1.5">
+                    <ClockIcon size={14} />
+                    {post.data.readTime}
+                  </span>
+                </div>
               </div>
-            )}
-          </article>
+              <p class="text-gray-dim italic mb-4">
+                {post.data.description || 'Read more about this topic...'}
+              </p>
+              {post.data.categories && (
+                <div class="flex gap-2 flex-wrap">
+                  {post.data.categories.map((cat) => (
+                    <span class="px-4 py-1.5 rounded-full text-sm bg-gray-medium text-gray-text">
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
+          </a>
         ))}
       </div>
 
