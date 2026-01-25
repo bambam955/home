@@ -1,35 +1,32 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Footer from '../../components/Footer.astro';
+import TextButton from 'src/components/buttons/TextButton.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
   return posts.map((post) => ({
-    params: { id: post.slug },
+    params: { id: post.id },
     props: { post },
   }));
 }
 
-interface Props {
-  post: CollectionEntry<'blog'>;
-}
-
 const { post } = Astro.props;
-const { Content } = await post.render();
+const { Content } = await render(post);
 ---
 
 <Layout title={post.data.title + ' | Blog'}>
   <main class="min-h-screen py-20 px-4">
     <article class="max-w-4xl mx-auto">
       <header class="mb-12">
-        <h1 class="text-4xl font-bold mb-4 text-green-primary">
+        <h1 class="text-4xl font-bold mb-4 text-gradient-primary">
           {post.data.title}
         </h1>
-        <div class="flex items-center gap-4 text-gray-dim">
+        <div class="flex items-center gap-4 text-gray-dim mb-4">
           <span
             >{
-              post.data.date.toLocaleDateString('en-US', {
+              post.data.pubDate.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
@@ -39,18 +36,27 @@ const { Content } = await post.render();
           <span>•</span>
           <span>{post.data.readTime}</span>
         </div>
+        {
+          post.data.categories && (
+            <div class="flex gap-2">
+              {post.data.categories.map((cat) => (
+                <span class="px-3 py-1 rounded-full text-sm bg-gray-medium text-gray-text">
+                  {cat}
+                </span>
+              ))}
+            </div>
+          )
+        }
       </header>
 
-      <div class="bg-gray-medium rounded-lg p-8 shadow-soft">
-        <div class="prose prose-invert max-w-none text-gray-dim">
+      <div class="bg-gray-dark rounded-lg p-8 shadow-soft">
+        <div class="prose prose-lg max-w-none text-gray-dim">
           <Content />
         </div>
       </div>
 
       <footer class="mt-12 pt-8 border-t border-gray-light">
-        <a href="/blog" class="text-green-primary hover:text-green-accent transition-colors">
-          ← Back to Blog
-        </a>
+        <TextButton href="/blog"> ← Back to Blog </TextButton>
       </footer>
     </article>
   </main>

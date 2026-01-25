@@ -1,0 +1,46 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'accent' | 'outlined';
+  size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
+  onClick?: string;
+}
+
+const { href, variant = 'primary', size = 'md', fullWidth = false, onClick } = Astro.props;
+
+// Size classes
+const sizeClasses = {
+  sm: 'px-4 py-2 text-sm',
+  md: 'px-6 py-3 text-base',
+  lg: 'px-8 py-4 text-lg',
+};
+
+// Variant classes
+const variantClasses = {
+  primary: 'gradient-primary btn-text-white hover:scale-103 hover:shadow-glow',
+  accent: 'gradient-accent btn-text-white hover:scale-103 hover:shadow-glow',
+  outlined:
+    'border border-peach-primary text-peach-primary hover:bg-gradient-primary hover:text-white hover:scale-103 hover:shadow-glow',
+};
+
+const baseClasses = 'rounded-lg transition-all duration-300 font-medium cursor-pointer';
+const widthClass = fullWidth ? 'block w-full text-center' : 'inline-block text-center';
+
+const buttonClasses = `${baseClasses} ${sizeClasses[size]} ${variantClasses[variant]} ${widthClass}`;
+
+// Ensure text color with inline styles if needed
+const textStyle = variant === 'primary' || variant === 'accent' ? 'color: white !important;' : '';
+---
+
+{
+  href ? (
+    <a href={href} class={buttonClasses} style={textStyle}>
+      <slot />
+    </a>
+  ) : (
+    <button class={buttonClasses} onclick={onClick} style={textStyle}>
+      <slot />
+    </button>
+  )
+}

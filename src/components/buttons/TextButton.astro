@@ -1,0 +1,24 @@
+---
+interface Props {
+  href?: string;
+  target?: string;
+  rel?: string;
+  onClick?: string;
+}
+
+const { href, target, rel, onClick } = Astro.props;
+
+const buttonClasses = 'text-gradient-primary hover:text-gradient-accent transition-all';
+---
+
+{
+  href ? (
+    <a href={href} target={target} rel={rel} class={buttonClasses}>
+      <slot />
+    </a>
+  ) : (
+    <button class={buttonClasses} onclick={onClick}>
+      <slot />
+    </button>
+  )
+}

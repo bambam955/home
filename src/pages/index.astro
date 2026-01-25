@@ -1,67 +1,100 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Footer from '../components/Footer.astro';
-import ProjectCard from '../components/ProjectCard.astro';
-import SkillsWeb from '../components/SkillsWeb.astro';
-import { projects } from '../data/projects';
+import GradientButton from '../components/buttons/GradientButton.astro';
 
-const featuredProjects = projects.filter((p) => p.featured);
+type PillarData = {
+  icon: string;
+  title: string;
+  description: string;
+  link: string;
+};
+
+// TODO: add descriptions
+const pillars: PillarData[] = [
+  {
+    icon: '🙏',
+    title: 'Faith',
+    description: '',
+    link: '/faith',
+  },
+  {
+    icon: '🎵',
+    title: 'Music',
+    description: '',
+    link: '/music',
+  },
+  {
+    icon: '💻',
+    title: 'Development',
+    description: '',
+    link: '/dev',
+  },
+];
 ---
 
-<Layout title="Home | Developer Portfolio" showBreadcrumbs={false}>
+<Layout title="Home | Bennett Moore" showBreadcrumbs={false}>
   <main class="min-h-screen">
     <!-- Hero Section -->
     <section class="py-20 px-4">
       <div class="max-w-4xl mx-auto text-center">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-green-primary">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-gradient-primary">
           Hey, I'm Bennett Moore!
         </h1>
         <p class="text-xl text-gray-dim mb-8">
-          Building amazing software projects with a variety of technologies
+          A Christian, musician, and software developer exploring the intersection of faith, art,
+          and technology.
         </p>
         <div class="flex gap-4 justify-center">
-          <a
-            href="/projects"
-            class="bg-green-primary hover:bg-green-accent text-green-darker px-6 py-3 rounded-lg transition-colors"
-          >
-            View Projects
-          </a>
-          <a
-            href="/about"
-            class="border border-green-primary hover:bg-green-primary hover:text-green-darker text-green-primary px-6 py-3 rounded-lg transition-colors"
-          >
-            About Me
-          </a>
+          <GradientButton href="#about" size="md"> Read My Story </GradientButton>
+          <GradientButton href="/blog" variant="outlined" size="md"> View Blog </GradientButton>
         </div>
       </div>
     </section>
 
-    <!-- Featured Projects -->
-    <section class="py-20 px-4 bg-gray-medium/30">
+    <!-- Three Pillars Section -->
+    <section class="py-20 px-4 bg-gray-medium/50">
       <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12 text-green-primary">Featured Projects</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {featuredProjects.map((project) => <ProjectCard project={project} />)}
-        </div>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="py-20 px-4">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-center mb-12 text-green-primary">
-          Skills & Technologies
+        <h2 class="text-3xl font-bold text-center mb-12 text-gradient-primary">
+          Explore My Journey
         </h2>
-        <div class="mb-8 text-center">
-          <p class="text-gray-dim max-w-2xl mx-auto">
-            Interactive visualization of my skills. Click any skill's node to highlight connections.
-            Larger nodes represent areas of deeper expertise.
-          </p>
+        <div class="grid md:grid-cols-3 gap-6">
+          {
+            pillars.map((pillar) => (
+              <div class="bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg transition-shadow flex flex-col h-32">
+                <div class="flex items-center pb-2">
+                  <div class="w-10 h-10 bg-gradient-primary/20 rounded-full flex items-center justify-start flex-shrink-0">
+                    <span class="text-xl">{pillar.icon}</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-gradient-primary">{pillar.title}</h3>
+                </div>
+                {/* <p class="text-gray-dim text-sm flex-1 pb-4">{pillar.description}</p> */}
+                <GradientButton href={pillar.link} variant="primary" size="sm" fullWidth>
+                  Explore
+                </GradientButton>
+              </div>
+            ))
+          }
         </div>
-        <SkillsWeb />
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="bg-gray-dark rounded-lg p-8 shadow-soft">
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">My Story</h2>
+          <div class="text-gray-dim leading-relaxed mb-8">
+            <p>
+              <!-- TODO: write about personal story -->
+              Coming soon!
+            </p>
+          </div>
+
+          <div class="text-center">
+            <GradientButton href="/blog" size="md"> Read More on My Blog </GradientButton>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-
-  <Footer />
 </Layout>

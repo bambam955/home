@@ -1,0 +1,59 @@
+---
+import Layout from 'src/layouts/Layout.astro';
+import ProjectCard from 'src/components/dev/ProjectCard.astro';
+import SkillsWeb from 'src/components/dev/SkillsWeb.astro';
+import { dev_projects } from 'src/data/dev/projects';
+
+const featuredProjects = dev_projects.filter((p) => p.featured);
+const allProjects = dev_projects;
+---
+
+<Layout title="Development | Bennett Moore">
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <h1 class="text-4xl font-bold mb-8 text-center text-gradient-primary">
+        Software Development
+      </h1>
+
+      <div class="bg-gray-dark rounded-lg p-8 shadow-soft mb-8">
+        <div class="mb-8">
+          <h2 class="text-2xl font-bold mb-4 text-gradient-primary">About My Work</h2>
+          <div class="text-gray-dim leading-relaxed mb-4">
+            <p>
+              <!-- TODO: write intro blurb about who I am as a software developer -->
+              Content coming soon!
+            </p>
+          </div>
+        </div>
+
+        <!-- Featured Projects -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">Featured Projects</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredProjects.map((project) => <ProjectCard project={project} />)}
+          </div>
+        </section>
+
+        <!-- All Projects -->
+        <section class="mb-12">
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">All Projects</h2>
+          <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {allProjects.map((project) => <ProjectCard project={project} />)}
+          </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="mb-8">
+          <h2 class="text-2xl font-bold mb-6 text-gradient-primary">Skills & Technologies</h2>
+          <div class="mb-6 text-center">
+            <p class="text-gray-dim max-w-2xl mx-auto">
+              Interactive visualization of my technical skills. Click any skill's node to highlight
+              connections. Larger nodes represent areas of deeper expertise.
+            </p>
+          </div>
+          <SkillsWeb />
+        </section>
+      </div>
+    </div>
+  </main>
+</Layout>

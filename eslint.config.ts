@@ -12,15 +12,16 @@ const config: Linter.Config[] = [
   {
     ignores: ['.astro/**'],
   },
-  {
-    files: ['src/scripts/*.js'],
-    languageOptions: {
-      globals: globals.browser,
-    },
-  },
+  // {
+  //   files: ['src/scripts/*.js'],
+  //   languageOptions: {
+  //     globals: globals.browser,
+  //   },
+  // },
   {
     files: ['**/*.{js,ts}'],
     languageOptions: {
+      globals: globals.browser,
       parserOptions: {
         project: './tsconfig.json',
       },

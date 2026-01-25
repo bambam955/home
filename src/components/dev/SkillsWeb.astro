@@ -104,11 +104,11 @@ const skillsConfig = {
     },
   ],
   categories: {
-    languages: '#00d992', // Green primary
-    frameworks: '#00b878', // Slightly darker green
-    protocols: '#00d992', // Green primary
-    domains: '#00b878', // Slightly darker green
-    concepts: '#00d992', // Green primary
+    languages: '#f4a460', // Peach primary
+    frameworks: '#d4a574', // Slightly darker peach
+    protocols: '#f4a460', // Peach primary
+    domains: '#d4a574', // Slightly darker peach
+    concepts: '#f4a460', // Peach primary
   },
 };
 ---
@@ -171,7 +171,7 @@ const skillsConfig = {
           y: y,
           vx: 0,
           vy: 0,
-          color: this.categories[skill.category] || '#00d992',
+          color: this.categories[skill.category] || '#f4a460',
         };
       });
     }
@@ -321,7 +321,7 @@ const skillsConfig = {
           this.ctx.beginPath();
           this.ctx.moveTo(fromNode.x, fromNode.y);
           this.ctx.lineTo(toNode.x, toNode.y);
-          this.ctx.strokeStyle = isHighlighted ? '#00d992' : '#00d99220';
+          this.ctx.strokeStyle = isHighlighted ? '#f4a460' : '#f4a46020';
           this.ctx.lineWidth = isHighlighted ? 2 : 1;
           this.ctx.stroke();
         }
@@ -344,12 +344,12 @@ const skillsConfig = {
         // Node circle
         this.ctx.beginPath();
         this.ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
-        this.ctx.fillStyle = isSelected ? '#00d992' : '#64748b'; // Green when selected, gray otherwise
+        this.ctx.fillStyle = isSelected ? '#f4a460' : '#94a3b8'; // Green when selected, gray otherwise
         this.ctx.globalAlpha = isDimmed ? 0.3 : isHovered || isSelected ? 1 : 0.8;
         this.ctx.fill();
 
         if (isSelected) {
-          this.ctx.strokeStyle = '#00d992';
+          this.ctx.strokeStyle = '#f4a460';
           this.ctx.lineWidth = 2;
           this.ctx.stroke();
         }

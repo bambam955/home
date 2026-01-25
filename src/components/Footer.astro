@@ -1,4 +1,6 @@
 ---
+import TextButton from './buttons/TextButton.astro';
+import MailIcon from './icons/MailIcon.astro';
 import GithubIcon from './icons/GithubIcon.astro';
 import LinkedinIcon from './icons/LinkedinIcon.astro';
 ---
@@ -7,17 +9,25 @@ import LinkedinIcon from './icons/LinkedinIcon.astro';
   <div class="max-w-6xl mx-auto px-6">
     <div class="flex flex-col md:flex-row justify-between items-center gap-8">
       <div class="text-center md:text-left">
-        <h3 class="text-xl font-bold mb-2 text-green-primary">Get in Touch</h3>
+        <h3 class="text-xl font-bold mb-2 text-gradient-primary">Get in Touch</h3>
         <p class="text-gray-dim">
-          Feel free to reach out for collaborations or just a friendly hello!
+          Feel free to reach out for collaborations, music opportunities, or just a friendly hello!
         </p>
       </div>
       <div class="flex gap-4">
         <a
+          href="mailto:hi@bemoore.life"
+          class="text-gray-dim hover:text-gradient-primary transition-all p-2"
+          aria-label="Send me an email"
+        >
+          <MailIcon />
+        </a>
+        <a
           href="https://github.com/bambam955"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-dim hover:text-green-primary transition-colors p-2"
+          class="text-gray-dim hover:text-gradient-primary transition-all p-2"
+          aria-label="Visit my GitHub profile"
         >
           <GithubIcon />
         </a>
@@ -25,25 +35,17 @@ import LinkedinIcon from './icons/LinkedinIcon.astro';
           href="https://www.linkedin.com/in/bennett-a-moore/"
           target="_blank"
           rel="noopener noreferrer"
-          class="text-gray-dim hover:text-green-primary transition-colors p-2"
+          class="text-gray-dim hover:text-gradient-primary transition-all p-2"
+          aria-label="Visit my LinkedIn profile"
         >
           <LinkedinIcon />
         </a>
-        <!-- <a
-          href="mailto:contact@example.com"
-          class="text-gray-dim hover:text-green-primary transition-colors p-2"
-        >
-          <ExternalLinkIcon />
-        </a> -->
       </div>
     </div>
     <div class="mt-4 pt-4 border-t border-gray-light text-center text-gray-dim text-sm">
       <p>
-        Made for sharing by Bennett Moore. No rights reserved. Built with <a
-          href="https://astro.build/"
-          target="_blank"
-          class="text-green-primary hover:text-green-accent transition-colors">Astro</a
-        >.
+        Curated with care by Bennett Moore. No rights reserved. Built with
+        <TextButton href="https://astro.build/" target="_blank"> Astro </TextButton>.
       </p>
     </div>
   </div>

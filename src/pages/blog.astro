@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+import GradientButton from '../components/buttons/GradientButton.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const postsByDate = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Blog | Bennett Moore">
+  <main class="min-h-screen py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl font-bold mb-12 text-center text-gradient-primary">Blog</h1>
+
+      <div class="mb-8 text-center">
+        <p class="text-gray-dim mb-6">
+          <!-- TODO: write intro blurb -->
+        </p>
+
+        <!-- Category Filter -->
+        <!-- TODO: make this actually work... -->
+        <div class="flex justify-center gap-4 flex-wrap">
+          <GradientButton variant="primary" size="sm"> All Posts </GradientButton>
+          <GradientButton variant="outlined" size="sm"> Faith </GradientButton>
+          <GradientButton variant="outlined" size="sm"> Music </GradientButton>
+          <GradientButton variant="outlined" size="sm"> Development </GradientButton>
+          <GradientButton variant="outlined" size="sm"> Life </GradientButton>
+        </div>
+      </div>
+
+      <div class="space-y-8">
+        {
+          postsByDate.map((post) => (
+            <article class="bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg transition-shadow">
+              <h2 class="text-2xl font-bold mb-3 text-gradient-accent">
+                <a href={`/blog/${post.id}`} class="hover:text-gradient-primary transition-all">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-gray-dim mb-4">
+                {post.data.description || 'Read more about this topic...'}
+              </p>
+              <div class="flex items-center gap-4 text-sm text-gray-dim mb-3">
+                <span>{post.data.pubDate.toLocaleDateString()}</span>
+                <span>•</span>
+                <span>{post.data.readTime}</span>
+              </div>
+              {post.data.categories && (
+                <div class="flex gap-2 flex-wrap">
+                  {post.data.categories.map((cat) => (
+                    <span class="px-3 py-1 rounded-full text-xs bg-gray-medium text-gray-text">
+                      {cat}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </main>
+</Layout>

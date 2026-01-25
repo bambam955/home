@@ -2,32 +2,15 @@
 import NavLink from './NavLink.astro';
 ---
 
-<style>
-  .cursor {
-    animation: cursor-blink 1s step-end infinite;
-  }
-
-  @keyframes cursor-blink {
-    from,
-    to {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0;
-    }
-  }
-</style>
-
 <header class="sticky top-0 z-50 bg-gray-medium/95 backdrop-blur-sm border-b border-gray-light">
   <nav class="max-w-6xl mx-auto px-6 py-4">
     <div class="flex justify-between items-center">
-      <a href="/" class="text-2xl font-bold text-green-primary">
-        Portfolio<span class="cursor text-green-primary">_</span>
-      </a>
+      <a href="/" class="text-2xl font-bold text-gradient-primary"> Bennett Moore </a>
       <div class="flex gap-8">
         <NavLink href="/">Home</NavLink>
-        <NavLink href="/projects">Projects</NavLink>
-        <NavLink href="/about">About</NavLink>
+        <NavLink href="/faith">Faith</NavLink>
+        <NavLink href="/music">Music</NavLink>
+        <NavLink href="/dev">Dev</NavLink>
         <NavLink href="/blog">Blog</NavLink>
       </div>
     </div>

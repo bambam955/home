@@ -12,9 +12,21 @@ const {
   description = 'A developer portfolio built with Astro',
   showBreadcrumbs = true,
 } = Astro.props;
-import MatrixRain from '../components/MatrixRain.astro';
+
 import Header from '../components/Header.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
+import Footer from '../components/Footer.astro';
+import MatrixRain from 'src/components/dev/MatrixRain.astro';
+
+type PageType = 'default' | 'dev';
+const pageType: PageType = Astro.url.pathname.startsWith('/dev') ? 'dev' : 'default';
+
+const bodyStyles = {
+  default: 'bg-gray-dark text-gray-text font-sans',
+  dev: 'bg-gray-dark text-gray-text font-mono',
+};
+
+const bodyClass = bodyStyles[pageType] + ' min-h-screen';
 ---
 
 <!doctype html>
@@ -29,16 +41,17 @@ import Breadcrumbs from '../components/Breadcrumbs.astro';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Fira+Code:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&family=Nunito+Sans:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
-  <body class="bg-gray-dark text-gray-text min-h-screen font-mono">
-    <MatrixRain />
+  <body class={bodyClass}>
+    {pageType === 'dev' && <MatrixRain />}
     <div class="relative z-10">
       <Header />
       {showBreadcrumbs && <Breadcrumbs />}
       <slot />
+      <Footer />
     </div>
   </body>
 </html>

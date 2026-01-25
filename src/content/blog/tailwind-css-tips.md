@@ -1,8 +1,10 @@
 ---
 title: Tailwind CSS Tips
-date: 2024-01-25
-readTime: 6 min read
 description: Practical tips and tricks for mastering Tailwind CSS.
+pubDate: 2024-01-25
+readTime: 6 min read
+categories:
+  - dev
 ---
 
 Tailwind CSS is a utility-first CSS framework that helps you build modern designs without leaving your HTML.

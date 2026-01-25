@@ -1,8 +1,10 @@
 ---
 title: React Best Practices
-date: 2024-01-20
-readTime: 8 min read
 description: Essential best practices for writing clean and maintainable React code.
+pubDate: 2024-01-20
+readTime: 8 min read
+categories:
+  - dev
 ---
 
 Writing React code that scales requires following proven patterns and best practices.

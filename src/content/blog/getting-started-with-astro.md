@@ -1,8 +1,10 @@
 ---
 title: Getting Started with Astro
-date: 2024-01-15
-readTime: 5 min read
 description: Learn how to get started with Astro and build fast static websites.
+pubDate: 2024-01-15
+readTime: 5 min read
+categories:
+  - dev
 ---
 
 Astro is a modern static site builder that lets you build faster websites with less client-side JavaScript.
