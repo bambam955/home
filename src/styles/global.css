@@ -79,50 +79,38 @@
     0 0 20px rgba(244, 164, 96, 0.2);
 }
 
-@utility prose {
-  /* Base text */
+/* Typography (prose) customization for dark theme */
+.prose {
   --tw-prose-body: var(--color-gray-text);
   --tw-prose-lead: var(--color-gray-dim);
-
-  /* Headings */
   --tw-prose-headings: var(--color-warm-white);
-
-  /* Links */
   --tw-prose-links: var(--color-peach-accent);
-
-  /* Emphasis */
   --tw-prose-bold: var(--color-warm-white);
   --tw-prose-italic: var(--color-gray-text);
-
-  /* Lists */
   --tw-prose-counters: var(--color-gray-dim);
   --tw-prose-bullets: var(--color-gray-dim);
-
-  /* Rules */
   --tw-prose-hr: var(--color-gray-light);
-
-  /* Quotes */
   --tw-prose-quotes: var(--color-warm-white);
   --tw-prose-quote-borders: var(--color-peach-subtle);
-
-  /* Captions */
   --tw-prose-captions: var(--color-gray-dim);
-
-  /* Code */
   --tw-prose-code: var(--color-peach-light);
   --tw-prose-pre-code: var(--color-gray-text);
   --tw-prose-pre-bg: var(--color-gray-medium);
-
-  /* Tables */
   --tw-prose-th-borders: var(--color-gray-light);
   --tw-prose-td-borders: var(--color-gray-light);
-
-  /* Base font */
   font-family: var(--font-family-sans);
 }
 
-@layer components {
-  :where(.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6) {
-    font-family: var(--font-family-heading);
-  }
+/* Inline code styling */
+.prose :where(code):not(:where(pre code)) {
+  background-color: var(--color-gray-light);
+  color: var(--color-gray-text);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose :where(code):not(:where(pre code))::before,
+.prose :where(code):not(:where(pre code))::after {
+  content: none;
 }
