@@ -37,26 +37,26 @@ const personSchema = {
   name: 'Bennett Moore',
   url: Astro.site?.toString(),
   jobTitle: 'Software Developer',
-  sameAs: [
-    'https://github.com/bambam955',
-    'https://www.linkedin.com/in/bennett-a-moore/',
-  ],
+  sameAs: ['https://github.com/bambam955', 'https://www.linkedin.com/in/bennett-a-moore/'],
 };
 
-const articleSchema = type === 'article' ? {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: title,
-  description: description,
-  author: {
-    '@type': 'Person',
-    name: author,
-  },
-  datePublished: publishedTime,
-  dateModified: modifiedTime || publishedTime,
-  ...(imageURL && { image: imageURL.toString() }),
-  url: canonicalURL.toString(),
-} : null;
+const articleSchema =
+  type === 'article'
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: title,
+        description: description,
+        author: {
+          '@type': 'Person',
+          name: author,
+        },
+        datePublished: publishedTime,
+        dateModified: modifiedTime || publishedTime,
+        ...(imageURL && { image: imageURL.toString() }),
+        url: canonicalURL.toString(),
+      }
+    : null;
 ---
 
 <!-- Primary Meta Tags -->
