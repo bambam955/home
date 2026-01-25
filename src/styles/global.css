@@ -27,11 +27,11 @@
 
 /* Custom gradient utilities */
 .gradient-primary {
-  background: linear-gradient(to right, #f4a460, #ffb3d9);
+  background: linear-gradient(to right, #d4843c, #e07ab8);
 }
 
 .gradient-accent {
-  background: linear-gradient(to right, #ff9f7f, #ff99cc);
+  background: linear-gradient(to right, #e07050, #e070a8);
 }
 
 .gradient-subtle {
@@ -71,6 +71,7 @@
 
 .btn-text-white {
   color: white !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .hover\:shadow-glow:hover {
