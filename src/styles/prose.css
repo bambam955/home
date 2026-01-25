@@ -1,0 +1,45 @@
+/* Gradient headings in prose content */
+.prose :where(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-family-heading);
+  font-weight: 700;
+  background: linear-gradient(to right, #f4a460, #ffb3d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Typography (prose) customization for dark theme */
+.prose {
+  --tw-prose-body: var(--color-gray-text);
+  --tw-prose-lead: var(--color-gray-dim);
+  --tw-prose-headings: var(--color-warm-white);
+  --tw-prose-links: var(--color-peach-accent);
+  --tw-prose-bold: var(--color-warm-white);
+  --tw-prose-italic: var(--color-gray-text);
+  --tw-prose-counters: var(--color-gray-dim);
+  --tw-prose-bullets: var(--color-gray-dim);
+  --tw-prose-hr: var(--color-gray-light);
+  --tw-prose-quotes: var(--color-warm-white);
+  --tw-prose-quote-borders: var(--color-peach-subtle);
+  --tw-prose-captions: var(--color-gray-dim);
+  --tw-prose-code: var(--color-peach-light);
+  --tw-prose-pre-code: var(--color-gray-text);
+  --tw-prose-pre-bg: var(--color-gray-medium);
+  --tw-prose-th-borders: var(--color-gray-light);
+  --tw-prose-td-borders: var(--color-gray-light);
+  font-family: var(--font-family-sans);
+}
+
+/* Inline code styling */
+.prose :where(code):not(:where(pre code)) {
+  background-color: var(--color-gray-light);
+  color: var(--color-gray-text);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose :where(code):not(:where(pre code))::before,
+.prose :where(code):not(:where(pre code))::after {
+  content: none;
+}
