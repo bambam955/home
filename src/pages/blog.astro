@@ -1,13 +1,23 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import GradientButton from '../components/buttons/GradientButton.astro';
+import CalendarIcon from '../components/icons/CalendarIcon.astro';
+import ClockIcon from '../components/icons/ClockIcon.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');
 const postsByDate = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// Map display names to actual category values used in posts
+const categories = [
+  { label: 'All Posts', value: 'all' },
+  { label: 'Faith', value: 'faith' },
+  { label: 'Music', value: 'music' },
+  { label: 'Development', value: 'dev' },
+  { label: 'Life', value: 'life' },
+];
 ---
 
-<Layout title="Blog | Bennett Moore">
+<Layout title="Blog | Bennett Moore" description="Writings on faith, music, code, and life.">
   <main class="min-h-screen py-20 px-4">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold mb-12 text-center text-gradient-primary">Blog</h1>
@@ -18,46 +28,130 @@ const postsByDate = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
         </p>
 
         <!-- Category Filter -->
-        <!-- TODO: make this actually work... -->
-        <div class="flex justify-center gap-4 flex-wrap">
-          <GradientButton variant="primary" size="sm"> All Posts </GradientButton>
-          <GradientButton variant="outlined" size="sm"> Faith </GradientButton>
-          <GradientButton variant="outlined" size="sm"> Music </GradientButton>
-          <GradientButton variant="outlined" size="sm"> Development </GradientButton>
-          <GradientButton variant="outlined" size="sm"> Life </GradientButton>
+        <div class="flex justify-center gap-4 flex-wrap" id="category-filters">
+          {
+            categories.map((cat, i) => (
+              <button
+                class:list={[
+                  'filter-btn rounded-lg transition-all duration-300 font-medium cursor-pointer px-4 py-2 text-sm',
+                  i === 0
+                    ? 'gradient-primary btn-text-white hover:scale-103 hover:shadow-glow'
+                    : 'border border-peach-primary text-peach-primary hover:bg-gradient-primary hover:text-white hover:scale-103 hover:shadow-glow',
+                ]}
+                data-category={cat.value}
+                data-active={i === 0 ? 'true' : 'false'}
+                style={i === 0 ? 'color: white !important;' : ''}
+              >
+                {cat.label}
+              </button>
+            ))
+          }
         </div>
       </div>
 
-      <div class="space-y-8">
+      <div class="space-y-8" id="posts-container">
         {
           postsByDate.map((post) => (
-            <article class="bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg transition-shadow">
-              <h2 class="text-2xl font-bold mb-3 text-gradient-accent">
-                <a href={`/blog/${post.id}`} class="hover:text-gradient-primary transition-all">
-                  {post.data.title}
-                </a>
-              </h2>
-              <p class="text-gray-dim mb-4">
-                {post.data.description || 'Read more about this topic...'}
-              </p>
-              <div class="flex items-center gap-4 text-sm text-gray-dim mb-3">
-                <span>{post.data.pubDate.toLocaleDateString()}</span>
-                <span>•</span>
-                <span>{post.data.readTime}</span>
-              </div>
-              {post.data.categories && (
-                <div class="flex gap-2 flex-wrap">
-                  {post.data.categories.map((cat) => (
-                    <span class="px-3 py-1 rounded-full text-xs bg-gray-medium text-gray-text">
-                      {cat}
+            <a
+              href={`/blog/${post.id}`}
+              class="post-item block bg-gray-dark rounded-lg p-6 shadow-soft hover:shadow-soft-lg border border-gray-light hover:border-peach-light/40 transition-all cursor-pointer"
+              data-categories={JSON.stringify(post.data.categories || [])}
+            >
+              <article>
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4">
+                  <h2 class="text-2xl font-bold text-gradient-accent">{post.data.title}</h2>
+                  <div class="flex items-center gap-4 text-sm text-gray-dim shrink-0">
+                    <span class="flex items-center gap-1.5">
+                      <CalendarIcon size={14} />
+                      {post.data.pubDate.toLocaleDateString()}
                     </span>
-                  ))}
+                    <span class="flex items-center gap-1.5">
+                      <ClockIcon size={14} />
+                      {post.data.readTime}
+                    </span>
+                  </div>
                 </div>
-              )}
-            </article>
+                <p class="text-gray-dim italic mb-4">
+                  {post.data.description || 'Read more about this topic...'}
+                </p>
+                {post.data.categories && (
+                  <div class="flex gap-2 flex-wrap">
+                    {post.data.categories.map((cat) => (
+                      <span class="px-4 py-1.5 rounded-full text-sm bg-gray-medium text-gray-text">
+                        {cat}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </article>
+            </a>
           ))
         }
+      </div>
+
+      <!-- Empty state message -->
+      <div id="no-posts-message" class="hidden text-center py-12">
+        <p class="text-gray-dim text-lg">No posts in this category yet. Check back soon!</p>
       </div>
     </div>
   </main>
 </Layout>
+
+<script>
+  function initFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const posts = document.querySelectorAll('.post-item');
+    const noPostsMessage = document.getElementById('no-posts-message');
+
+    const activeClasses = ['gradient-primary', 'btn-text-white'];
+    const inactiveClasses = ['border', 'border-peach-primary', 'text-peach-primary'];
+
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const category = btn.getAttribute('data-category');
+
+        // Update button styles
+        filterBtns.forEach((b) => {
+          b.setAttribute('data-active', 'false');
+          b.classList.remove(...activeClasses);
+          b.classList.add(...inactiveClasses);
+          (b as HTMLElement).style.color = '';
+        });
+
+        btn.setAttribute('data-active', 'true');
+        btn.classList.remove(...inactiveClasses);
+        btn.classList.add(...activeClasses);
+        (btn as HTMLElement).style.color = 'white';
+
+        // Filter posts
+        let visibleCount = 0;
+        posts.forEach((post) => {
+          const postCategories = JSON.parse(post.getAttribute('data-categories') || '[]');
+          const shouldShow = category === 'all' || postCategories.includes(category);
+
+          if (shouldShow) {
+            (post as HTMLElement).style.display = '';
+            visibleCount++;
+          } else {
+            (post as HTMLElement).style.display = 'none';
+          }
+        });
+
+        // Show/hide empty state
+        if (noPostsMessage) {
+          if (visibleCount === 0) {
+            noPostsMessage.classList.remove('hidden');
+          } else {
+            noPostsMessage.classList.add('hidden');
+          }
+        }
+      });
+    });
+  }
+
+  // Run on initial load
+  initFilters();
+
+  // Re-run on Astro page transitions
+  document.addEventListener('astro:after-swap', initFilters);
+</script>

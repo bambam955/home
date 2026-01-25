@@ -1,31 +1,26 @@
 {
-  "name": "@bambam955/personal-site",
+  "name": "@bambam955/home",
   "description": "Bennett Moore's personal website",
   "private": true,
   "type": "module",
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "lint": "eslint . && markdownlint .",
-    "lint:fix": "eslint --cache --fix . && markdownlint --fix .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "build": "astro build"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.0",
     "@tailwindcss/node": "4.0.5",
     "@tailwindcss/typography": "0.5.19",
     "@tailwindcss/vite": "4.0.5",
-    "astro": "^5.16.6",
+    "astro": "^5.16.15",
     "tailwindcss": "4.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
-    "@microsoft/eslint-formatter-sarif": "^3.1.0",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-astro": "^1.3.1",
-    "eslint-plugin-prettier": "^5.2.3",
     "globals": "^17.0.0",
     "jiti": "^2.6.1",
     "markdownlint-cli": "^0.47.0",

@@ -1,6 +1,5 @@
 ---
 import type SoftwareProject from 'src/data/dev/types';
-import TextButton from 'src/components/buttons/TextButton.astro';
 
 export interface Props {
   project: SoftwareProject;
@@ -10,12 +9,13 @@ const { project } = Astro.props;
 ---
 
 <div
-  class="bg-gray-dark border border-gray-light hover:bg-gradient-primary hover:border-transparent transition-all duration-300 p-6 rounded-lg shadow-soft hover:shadow-soft-lg"
+  class="project-card relative bg-gray-dark border border-gray-light hover:border-peach-light/40 hover:bg-gradient-primary transition-all duration-300 p-6 rounded-lg shadow-soft hover:shadow-soft-lg cursor-pointer"
+  data-primary-link={project.primaryLink}
 >
   <h3 class="text-xl font-bold mb-3 text-gradient-accent hover:text-gradient-primary">
     {project.title}
   </h3>
-  <p class="text-gray-dim mb-4 hover:text-gray-text">{project.description}</p>
+  <p class="text-gray-dim mb-4">{project.description}</p>
   <div class="flex flex-wrap gap-2 mb-4">
     {
       project.tags.map((tag) => (
@@ -26,13 +26,34 @@ const { project } = Astro.props;
     }
   </div>
   <div class="flex gap-4">
-    <TextButton href={project.github} target="_blank" rel="noopener noreferrer">GitHub</TextButton>
     {
-      project.demo && (
-        <TextButton href={project.demo} target="_blank" rel="noopener noreferrer">
-          Live Demo
-        </TextButton>
-      )
+      project.links.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="project-link text-gradient-primary hover:text-gradient-accent transition-all"
+        >
+          {link.label}
+        </a>
+      ))
     }
   </div>
 </div>
+
+<script>
+  function initProjectCards() {
+    document.querySelectorAll('.project-card').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        // Don't navigate if clicking on a link
+        if ((e.target as HTMLElement).closest('.project-link')) return;
+
+        const url = card.getAttribute('data-primary-link');
+        if (url) window.open(url, '_blank');
+      });
+    });
+  }
+
+  initProjectCards();
+  document.addEventListener('astro:after-swap', initProjectCards);
+</script>

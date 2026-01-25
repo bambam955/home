@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  format-check:
+  lint-and-format:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -22,39 +22,11 @@ jobs:
       - name: Install dependencies
         run: npm ci --no-audit --no-fund
 
-      - name: Run Prettier
+      - name: Prettier
         run: npx prettier --check .
 
-  lint:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      security-events: write
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: ESLint
+        run: npx eslint .
 
-      - name: Node setup
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
-
-      - name: Run markdownlint
-        run: npx markdownlint **/*.md **/*.mdx
-        continue-on-error: true
-
-      - name: Run eslint
-        env:
-          SARIF_ESLINT_IGNORE_SUPPRESSED: 'true'
-        run: npx eslint . --config eslint.config.ts --format @microsoft/eslint-formatter-sarif --output-file eslint-results.sarif
-        continue-on-error: true
-
-      - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: eslint-results.sarif
-          wait-for-processing: true
+      - name: markdownlint
+        run: npx markdownlint .

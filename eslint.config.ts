@@ -1,7 +1,7 @@
 import eslintAstroPlugin from 'eslint-plugin-astro';
 import typescriptEslint from 'typescript-eslint';
-import prettierPlugin from 'eslint-plugin-prettier';
 import eslintJs from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import globals from 'globals';
 import type { Linter } from 'eslint';
 
@@ -12,12 +12,6 @@ const config: Linter.Config[] = [
   {
     ignores: ['.astro/**'],
   },
-  // {
-  //   files: ['src/scripts/*.js'],
-  //   languageOptions: {
-  //     globals: globals.browser,
-  //   },
-  // },
   {
     files: ['**/*.{js,ts}'],
     languageOptions: {
@@ -26,13 +20,8 @@ const config: Linter.Config[] = [
         project: './tsconfig.json',
       },
     },
-    plugins: {
-      prettier: prettierPlugin,
-    },
-    rules: {
-      'prettier/prettier': ['error'],
-    },
   },
+  eslintConfigPrettier, // Disables ESLint rules that conflict with Prettier
 ];
 
 export default config;

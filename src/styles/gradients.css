@@ -1,0 +1,27 @@
+/* Gradient background utilities */
+.gradient-primary {
+  background: linear-gradient(to right, #d4843c, #e07ab8);
+}
+
+.gradient-accent {
+  background: linear-gradient(to right, #e07050, #e070a8);
+}
+
+.gradient-subtle {
+  background: linear-gradient(to right, #ffe4d6, #ffb3d9);
+}
+
+/* Gradient text utilities */
+.text-gradient-primary {
+  background: linear-gradient(to right, #f4a460, #ffb3d9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(to right, #ff9f7f, #ff99cc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,0 +1,23 @@
+@theme {
+  --color-peach-dark: #d4a574;
+  --color-peach-darker: #c19660;
+  --color-peach-primary: #f4a460;
+  --color-peach-light: #f8b88b;
+  --color-peach-accent: #ff9f7f;
+  --color-peach-subtle: #ffe4d6;
+  --color-pink-light: #ffb3d9;
+  --color-pink-accent: #ff99cc;
+  --color-gray-dark: #0a0a0a;
+  --color-gray-medium: #1a1a1a;
+  --color-gray-light: #2a2a2a;
+  --color-gray-text: #f1f5f9;
+  --color-gray-dim: #94a3b8;
+  --color-cream: #fafaf9;
+  --color-warm-white: #fefdfb;
+
+  --font-family-sans: 'Nunito', 'Inter', system-ui, sans-serif;
+  --font-family-heading: 'Nunito Sans', 'Inter', system-ui, sans-serif;
+
+  --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+  --shadow-soft-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
