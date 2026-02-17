@@ -17,13 +17,12 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
 
       - name: ESLint
         run: npx eslint .
 
-      - name: markdownlint
+      - name: Markdownlint
         run: npx markdownlint .
 
   format:
@@ -36,8 +35,7 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Install dependencies
-        run: npm ci --no-audit --no-fund
+      - run: npm ci --no-audit --no-fund
 
       - name: Prettier
         run: npx prettier --check .
