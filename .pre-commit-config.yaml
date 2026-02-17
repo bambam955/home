@@ -27,5 +27,5 @@ repos:
         name: format
         entry: npx prettier --write
         language: system
-        files: \.(js|ts|mjs|astro|css|md|mdx|json)$
+        files: \.(js|ts|mjs|astro|css|md|mdx|json|jsonc)$
         pass_filenames: true

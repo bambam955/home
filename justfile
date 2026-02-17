@@ -16,5 +16,5 @@ lint:
     npx markdownlint --fix .
 
 # Format all source code
-fmt:
+format:
     npx prettier --write .

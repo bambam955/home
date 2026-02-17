@@ -1,0 +1,20 @@
+{
+  "main": "dist/_worker.js/index.js",
+  "name": "bemoore-life",
+  "compatibility_date": "2026-02-17",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "bemoore.life",
+      "custom_domain": true
+    }
+  ]
+}

@@ -9,6 +9,7 @@
     "build": "astro build"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.12",
     "@astrojs/sitemap": "^3.7.0",
     "@tailwindcss/node": "4.0.5",
     "@tailwindcss/typography": "0.5.19",
@@ -27,6 +28,7 @@
     "prettier": "^3.4.2",
     "prettier-plugin-astro": "^0.14.1",
     "typescript": "^5.7.3",
-    "typescript-eslint": "^8.22.0"
+    "typescript-eslint": "^8.22.0",
+    "wrangler": "^4.65.0"
   }
 }
