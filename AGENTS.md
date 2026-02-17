@@ -67,7 +67,7 @@ public/               # Static assets
 just dev     # Start development server
 just build   # Build for production
 just lint    # ESLint + markdownlint with auto-fix
-just fmt     # Format with Prettier
+just format     # Format with Prettier
 ```
 
 ## Adding Projects
