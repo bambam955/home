@@ -10,4 +10,11 @@
   "observability": {
     "enabled": true,
   },
+  "workers_dev": false,
+  "routes": [
+    {
+      "pattern": "bemoore.life",
+      "custom_domain": true,
+    },
+  ],
 }
