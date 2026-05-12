@@ -1,8 +1,8 @@
 // Configuration constants
 const CONFIG = {
   fontSize: 14,
-  frameInterval: 50,
-  gradientFraction: 0.75,
+  frameInterval: 50, // ms between frames
+  gradientFraction: 0.75, // 75% gradient, 25% solid dark
   darkOpacity: 0.85,
   charOpacity: 0.4,
   charColor: '#ff99cc',
@@ -19,6 +19,7 @@ class MatrixRain {
     this.ctx = this.canvas.getContext('2d');
     this.lastTime = 0;
 
+    // Gradient mask system - two canvases forming a "conveyor belt"
     this.gradientMasks = [];
     this.characterCanvas = null;
     this.characterCtx = null;
@@ -37,13 +38,16 @@ class MatrixRain {
     this.columns = Math.floor(this.canvas.width / CONFIG.fontSize);
     this.gridRows = Math.ceil(this.canvas.height / CONFIG.fontSize);
 
+    // Create character canvas
     this.characterCanvas = document.createElement('canvas');
     this.characterCanvas.width = this.canvas.width;
     this.characterCanvas.height = this.canvas.height;
     this.characterCtx = this.characterCanvas.getContext('2d');
 
+    // Random shift per column (0 to 1, as fraction of total height)
     this.columnShifts = Array.from({ length: this.columns }, () => Math.random());
 
+    // Create two gradient mask canvases that together form one continuous pattern
     this.gradientMasks = [
       { canvas: document.createElement('canvas'), y: 0 },
       { canvas: document.createElement('canvas'), y: -this.canvas.height },
@@ -59,6 +63,13 @@ class MatrixRain {
     this.populateStaticGrid();
   }
 
+  /**
+   * Draw gradients split across both mask canvases.
+   *
+   * Each column has a pattern: 75% gradient (dark→transparent) + 25% solid dark.
+   * The pattern is split across both canvases based on columnShifts, so when
+   * the canvases tile vertically, each column's pattern continues seamlessly.
+   */
   drawSplitGradients() {
     const contexts = this.gradientMasks.map((m) => m.canvas.getContext('2d'));
     const h = this.canvas.height;
@@ -77,20 +88,24 @@ class MatrixRain {
   drawColumnPattern(contexts, x, shift, gradientLength, h, totalHeight) {
     const w = CONFIG.fontSize;
 
+    // Pattern segments: gradient [0, gradientLength), dark [gradientLength, totalHeight)
     const segments = [
       { start: 0, end: gradientLength, type: 'gradient' },
       { start: gradientLength, end: totalHeight, type: 'dark' },
     ];
 
+    // Draw to each canvas (canvas 0 covers [h, 2h), canvas 1 covers [0, h))
     for (let canvasIdx = 0; canvasIdx < 2; canvasIdx++) {
       const ctx = contexts[canvasIdx];
       const canvasStart = canvasIdx === 0 ? h : 0;
       const canvasEnd = canvasStart + h;
 
       for (const seg of segments) {
+        // Map segment to combined canvas space with shift and wrapping
         const segStart = (shift + seg.start) % totalHeight;
         const segEnd = (shift + seg.end) % totalHeight;
 
+        // Handle wrapping - segment might split across the wrap point
         const ranges =
           segStart <= segEnd
             ? [{ start: segStart, end: segEnd }]
@@ -100,11 +115,13 @@ class MatrixRain {
               ];
 
         for (const range of ranges) {
+          // Clip to this canvas's range
           const drawStart = Math.max(range.start, canvasStart);
           const drawEnd = Math.min(range.end, canvasEnd);
 
           if (drawStart >= drawEnd) continue;
 
+          // Convert to canvas-local coordinates
           const localStart = drawStart - canvasStart;
           const localEnd = drawEnd - canvasStart;
 
@@ -140,9 +157,11 @@ class MatrixRain {
     totalHeight,
     w
   ) {
+    // Calculate what portion of the gradient this segment represents
     const patternStart = (drawStart - shift + totalHeight) % totalHeight;
     const patternEnd = patternStart + (localEnd - localStart);
 
+    // t=0 is dark end, t=1 is transparent end
     const t0 = patternStart / gradientLength;
     const t1 = patternEnd / gradientLength;
 
@@ -201,6 +220,7 @@ class MatrixRain {
       mask.y += CONFIG.fontSize;
     }
 
+    // Conveyor belt wrap: when one goes off-screen, place it above the other
     for (let i = 0; i < this.gradientMasks.length; i++) {
       if (this.gradientMasks[i].y > this.canvas.height) {
         const other = this.gradientMasks[(i + 1) % this.gradientMasks.length];
