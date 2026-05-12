@@ -1,14 +1,20 @@
 ---
-import Layout from 'src/layouts/Layout.astro';
-import ProjectCard from 'src/components/dev/ProjectCard.astro';
-import SkillsWeb from 'src/components/dev/SkillsWeb.astro';
-import { dev_projects } from 'src/data/dev/projects';
+import Layout from '../common/layouts/Layout.astro';
+import ProjectCard from '../dev/components/ProjectCard.astro';
+import SkillsWeb from '../dev/components/SkillsWeb.astro';
+import MatrixRain from '../dev/components/MatrixRain.astro';
+import { dev_projects } from '../dev/data/projects';
 
 const featuredProjects = dev_projects.filter((p) => p.featured);
 const allProjects = dev_projects;
 ---
 
-<Layout title="Development | Bennett Moore" description="Software projects and technical skills.">
+<Layout
+  title="Development | Bennett Moore"
+  description="Software projects and technical skills."
+  theme="dev"
+>
+  <MatrixRain slot="decorations" />
   <main class="min-h-screen py-20 px-4">
     <div class="max-w-6xl mx-auto">
       <h1 class="text-4xl font-bold mb-8 text-center text-gradient-primary">

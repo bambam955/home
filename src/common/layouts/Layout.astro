@@ -6,7 +6,7 @@ export interface Props {
   title: string;
   description?: string;
   showBreadcrumbs?: boolean;
-  // SEO props
+  theme?: 'default' | 'dev';
   image?: string;
   type?: 'website' | 'article';
   publishedTime?: string;
@@ -17,6 +17,7 @@ const {
   title,
   description = 'Personal website of Bennett Moore - Christian, musician, and software developer',
   showBreadcrumbs = true,
+  theme = 'default',
   image,
   type = 'website',
   publishedTime,
@@ -26,17 +27,13 @@ const {
 import Header from '../components/Header.astro';
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import Footer from '../components/Footer.astro';
-import MatrixRain from 'src/components/dev/MatrixRain.astro';
-
-type PageType = 'default' | 'dev';
-const pageType: PageType = Astro.url.pathname.startsWith('/dev') ? 'dev' : 'default';
 
 const bodyStyles = {
   default: 'bg-gray-dark text-gray-text font-sans',
   dev: 'bg-gray-dark text-gray-text font-mono',
 };
 
-const bodyClass = bodyStyles[pageType] + ' min-h-screen';
+const bodyClass = bodyStyles[theme] + ' min-h-screen';
 ---
 
 <!doctype html>
@@ -70,7 +67,7 @@ const bodyClass = bodyStyles[pageType] + ' min-h-screen';
     />
   </head>
   <body class={bodyClass}>
-    {pageType === 'dev' && <MatrixRain />}
+    <slot name="decorations" />
     <div class="relative z-10">
       <Header />
       {showBreadcrumbs && <Breadcrumbs />}

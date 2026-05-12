@@ -1,7 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
-import Layout from '../../layouts/Layout.astro';
-import TextButton from 'src/components/buttons/TextButton.astro';
+import Layout from '../../common/layouts/Layout.astro';
+import TextButton from '../../common/components/buttons/TextButton.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
