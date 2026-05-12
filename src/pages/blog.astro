@@ -1,7 +1,7 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import CalendarIcon from '../components/icons/CalendarIcon.astro';
-import ClockIcon from '../components/icons/ClockIcon.astro';
+import Layout from '../common/layouts/Layout.astro';
+import CalendarIcon from '../common/components/icons/CalendarIcon.astro';
+import ClockIcon from '../common/components/icons/ClockIcon.astro';
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('blog');

@@ -1,0 +1,10 @@
+---
+import Layout from '../../common/layouts/Layout.astro';
+import MatrixRain from '../components/MatrixRain.astro';
+import { type LayoutProps as Props } from 'src/common/layouts/props';
+---
+
+<Layout {...Astro.props} theme="dev">
+  <MatrixRain slot="decorations" />
+  <slot />
+</Layout>
