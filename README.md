@@ -1,5 +1,7 @@
 # bemoore.life
 
+> Development has moved to GitLab: https://gitlab.com/bambam955/home
+
 <https://bemoore.life>
 
 My personal website, built with Astro and Tailwind CSS.
